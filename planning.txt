@@ -1,0 +1,7 @@
+
+
+
+database: shopping
+collections: users
+
+
