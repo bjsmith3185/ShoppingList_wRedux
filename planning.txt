@@ -5,3 +5,7 @@ database: shopping
 collections: users, shoppings
 
 
+Home.js page is working with redux
+
+Next:
+    - try adding another page and wiring up redux there

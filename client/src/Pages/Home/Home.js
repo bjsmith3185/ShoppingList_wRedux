@@ -3,21 +3,22 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import * as ROUTES from "../../constants/routes";
 import "./Home.css";
-import Form from '../../components/Form'
+import Form from "../../components/Form";
 
 // Redux
 import { connect } from "react-redux";
+import List from "../../components/List";
 
 class HomePage extends Component {
   state = {
-    item: '',
-    store: '',
-    qty: '',
-    note: '',
+    item: "",
+    store: "",
+    qty: "",
+    note: ""
   };
 
   componentDidMount() {
-    this.props.getList()
+    this.props.getList();
   }
 
   onChange = event => {
@@ -39,7 +40,7 @@ class HomePage extends Component {
         item: this.state.item,
         store: this.state.store,
         qty: this.state.qty,
-        note: this.state.note,
+        note: this.state.note
       }
     };
 
@@ -73,29 +74,11 @@ class HomePage extends Component {
           store={this.state.store}
           addToList={this.moreItems}
         />
-        <hr/>
-{/* 
-        <form>
-          <span>Add new item</span>
-          <button onClick={this.moreItems}>Add</button>
-          
-        </form>
-        <br />
-        <hr /> */}
-        <ul className="text-center list-container">
-          {this.props.list.map((item, i) => (
-            <li className="text-center item" key={i}>
-              <div>{item.item}</div>
-              <div>{item.store}</div>
-              <div>{item.qty}</div>
-              <div>{item.note}</div>
-              <br />
-              <button onClick={() => this.delete(item.item)}>Delete</button>
-              <hr />
-              <br />
-            </li>
-          ))}
-        </ul>
+        <hr />
+
+        <List list={this.props.list} delete={this.delete} />
+
+       
       </div>
     );
   }
@@ -132,7 +115,7 @@ const mapDispachToProps = dispach => {
     },
 
     getList: () => {
-      dispach({ type: 'GET_LIST' })
+      dispach({ type: "GET_LIST" });
     }
 
     // onAgeDown: () => dispach({type: 'AGE_DOWN', val: 1})
