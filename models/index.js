@@ -1,6 +1,7 @@
 module.exports = {
 
-  Pictures: require("./pictures"),
+  Shopping: require("./shopping"),
+  Users: require("./users"),
 
 };
 

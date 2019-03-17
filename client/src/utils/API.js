@@ -6,7 +6,11 @@ export default {
   // =========== route /populate/....
 
   populateUser: function () {
-    return axios.post("/api/populate/reset/users");
+    return axios.post("/populate/users");
+  },
+
+  populateShopping: function () {
+    return axios.post("/populate/shopping");
   },
 
   
