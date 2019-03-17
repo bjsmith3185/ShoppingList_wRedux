@@ -14,8 +14,15 @@ export default {
   },
 
   
+  // =============== shopping
 
+  updateShoppingList: function (data) {
+    return axios.post('./api/shopping', data)
+  },
 
+  getListItems: function () {
+    return axios.get('./api/shopping');
+  },
 
 
 };

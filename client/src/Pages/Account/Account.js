@@ -6,7 +6,7 @@ import * as ROUTES from "../../constants/routes";
 
 class Account extends Component {
   componentDidMount() {
-    this.checkIfUserExists();
+
   }
 
   // componentWillUnmount() {

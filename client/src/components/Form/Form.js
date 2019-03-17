@@ -7,17 +7,47 @@ const Form = (props) => (
     <div className="row">
       <div className="col-2"></div>
       <div className="col-6">
-        <div className="form-title">Add a user.</div>
-
+        <div className="form-title">Add Item to List</div>
+          <span>Item</span>
           <input className="form-input"
-            value={props.newUser}
-            name="newUser"
-            onChange={props.handleInputChange}
+            value={props.item}
+            name="item"
+            onChange={props.onChange}
             type="text"
-            placeholder="User Name"
+            placeholder="Enter Item"
           />
           <br/>
-          <button className="form-btn btn btn-info" onClick={props.addUser}>Submit</button>
+
+          <span>Qty</span>
+          <input className="form-input"
+            value={props.qty}
+            name="qty"
+            onChange={props.onChange}
+            type="text"
+            placeholder="Qty"
+          />
+          <br/>
+
+          <span>Store</span>
+          <input className="form-input"
+            value={props.store}
+            name="store"
+            onChange={props.onChange}
+            type="text"
+            placeholder="Store"
+          />
+          <br/>
+
+          <span>Notes</span>
+          <input className="form-input"
+            value={props.note}
+            name="note"
+            onChange={props.onChange}
+            type="text"
+            placeholder="Add Note"
+          />
+          <br/>
+          <button className="form-btn btn btn-info" onClick={props.addToList}>Submit</button>
 
       </div>
     </div>

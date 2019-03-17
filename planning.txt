@@ -2,6 +2,6 @@
 
 
 database: shopping
-collections: users
+collections: users, shoppings
 
 

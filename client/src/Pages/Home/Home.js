@@ -3,38 +3,57 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import * as ROUTES from "../../constants/routes";
 import "./Home.css";
+import Form from '../../components/Form'
 
 // Redux
 import { connect } from "react-redux";
 
-
-
 class HomePage extends Component {
+  state = {
+    item: '',
+    store: '',
+    qty: '',
+    note: '',
+  };
+
+  componentDidMount() {
+    this.props.getList()
+  }
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  // getListOnLoad = () => {
+  //   // API.getListItems()
+  //   //   .then(result => {})
+  //   //   .catch(err => console.log(err));
+  // };
+
   moreItems = event => {
     event.preventDefault();
     console.log("button was clicked");
     let data = {
       type: "ADD_ITEM",
       val: {
-        item: "milk",
-        store: "teeter",
-        qty: 3,
-        note: "skim"
+        item: this.state.item,
+        store: this.state.store,
+        qty: this.state.qty,
+        note: this.state.note,
       }
-    }
+    };
 
     this.props.addItem(data);
   };
 
-  delete = (item) => {
-    console.log('deleting')
+  delete = item => {
+    console.log("deleting");
     let data = {
-      type: 'DELETE_ITEM',
+      type: "DELETE_ITEM",
       item: item
-    }
+    };
 
     this.props.removeItem(data);
-
   };
 
   render() {
@@ -46,14 +65,23 @@ class HomePage extends Component {
         <h3 className="text-center">{this.props.name}</h3>
         <hr />
         <br />
-
+        <Form
+          onChange={this.onChange}
+          note={this.state.note}
+          item={this.state.item}
+          qty={this.state.qty}
+          store={this.state.store}
+          addToList={this.moreItems}
+        />
+        <hr/>
+{/* 
         <form>
           <span>Add new item</span>
           <button onClick={this.moreItems}>Add</button>
-          {/* <button onClick={this.props.addItem}>Add</button> */}
+          
         </form>
         <br />
-        <hr />
+        <hr /> */}
         <ul className="text-center list-container">
           {this.props.list.map((item, i) => (
             <li className="text-center item" key={i}>
@@ -61,7 +89,7 @@ class HomePage extends Component {
               <div>{item.store}</div>
               <div>{item.qty}</div>
               <div>{item.note}</div>
-              <br/>
+              <br />
               <button onClick={() => this.delete(item.item)}>Delete</button>
               <hr />
               <br />
@@ -92,18 +120,20 @@ const mapDispachToProps = dispach => {
     //   note: 'skim',
     // }}) },
 
-    addItem: (data) => {
+    addItem: data => {
       dispach({
         type: data.type,
         val: data.val
       });
     },
 
-    removeItem: (data) => {
-      dispach({type: data.type, val: data.item})
+    removeItem: data => {
+      dispach({ type: data.type, val: data.item });
     },
 
-
+    getList: () => {
+      dispach({ type: 'GET_LIST' })
+    }
 
     // onAgeDown: () => dispach({type: 'AGE_DOWN', val: 1})
   };
