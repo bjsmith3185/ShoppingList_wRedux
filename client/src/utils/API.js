@@ -24,6 +24,10 @@ export default {
     return axios.get('./api/shopping');
   },
 
+  deleteItem: function (item) {
+    return axios.delete('./api/shopping/' + item)
+  },
+
 
 };
 

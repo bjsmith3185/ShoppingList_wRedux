@@ -20,6 +20,16 @@ module.exports = {
       // });
   },
 
+  remove: function (item) {
+    return db.Shopping
+    .remove({item : item})
+  }
+
+
+
+
+
+
   // findByPicture: function (id) {
   //   return db.Pictures
   //     .findById({ _id : id })
@@ -32,10 +42,7 @@ module.exports = {
   //     .findOneAndUpdate({ _id: id }, data , { new : true })
   // },
 
-  // remove: function (id) {
-  //   return db.Pictures
-  //   .remove({_id : id})
-  // },
+  ,
 
   // removeAll: function () {
   //   return db.Pictures
