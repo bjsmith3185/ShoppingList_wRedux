@@ -16,7 +16,7 @@ const List = (props) => (
               <div>{item.qty}</div>
               <div>{item.note}</div>
               <br />
-              <button onClick={() => props.delete(item.item)}>Delete</button>
+              <button onClick={() => props.delete(item._id)}>Delete</button>
               <hr />
               <br />
             </li>

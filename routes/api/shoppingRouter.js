@@ -13,12 +13,13 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/").post((req, res) => {
-  console.log("!!!!!!!!!!!!!!!!!!!1");
-  console.log(req.body);
+  // console.log("shopping-Router");
+  // console.log(req.body);
+
   let data = {
     item: req.body.val.item,
     store: req.body.val.store,
-    qty: req.body.val.item,
+    qty: req.body.val.qty,
     note: req.body.val.note
   };
 
@@ -27,15 +28,22 @@ router.route("/").post((req, res) => {
     .then(dbresults => {
       console.log("after adding to shopping collection");
       console.log(dbresults);
-      res.json(dbresults);
+      shopping.findAll()
+      .then(allItems => {
+        console.log("all items to be returned")
+        console.log(allItems)
+        res.json(allItems)
+      })
+      .catch(err => res.status(422).json(err));
+      // res.json(dbresults);
     })
     .catch(err => res.status(422).json(err));
 });
 
-router.route("/:item").delete((req, res) => {
-  console.log(req.params.item);
+router.route("/:id").delete((req, res) => {
+  console.log(req.params.id);
   shopping
-    .remove(req.params.item)
+    .remove(req.params.id)
     .then(dbresults => {
       console.log("response after removing item");
 

@@ -9,7 +9,7 @@ const ShoppingSchema = new Schema({
 
   note: { type: String },
   
-  qty: { type: String },
+  qty: { type: String, default: 1 },
   
 
 });

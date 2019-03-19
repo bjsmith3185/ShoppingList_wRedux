@@ -45,13 +45,19 @@ class HomePage extends Component {
     };
 
     this.props.addItem(data);
+    this.setState({
+      item: "",
+      store: "",
+      qty: "",
+      note: ""
+    });
   };
 
-  delete = item => {
+  delete = item_id => {
     console.log("deleting");
     let data = {
       type: "DELETE_ITEM",
-      item: item
+      id: item_id
     };
 
     this.props.removeItem(data);
@@ -77,8 +83,6 @@ class HomePage extends Component {
         <hr />
 
         <List list={this.props.list} delete={this.delete} />
-
-       
       </div>
     );
   }
@@ -111,7 +115,7 @@ const mapDispachToProps = dispach => {
     },
 
     removeItem: data => {
-      dispach({ type: data.type, val: data.item });
+      dispach({ type: data.type, val: data.id });
     },
 
     getList: () => {

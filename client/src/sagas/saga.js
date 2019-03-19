@@ -15,7 +15,7 @@ function* addItemAsync(data) {
     const myData = yield API.updateShoppingList(data)
 
 //    console.log(myData)
-    yield put({type: 'ADD_ITEM_ASYNC', val: myData.data});
+    yield put({type: 'GET_LIST_ASYNC', val: myData.data});
 
 }
 

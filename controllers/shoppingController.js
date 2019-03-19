@@ -3,15 +3,17 @@ const db = require("../models");
 module.exports = {
 
   create: function (data) {
-    console.log("is this here?????")
-    console.log(data)
+    // console.log("shopping-controller")
+    // console.log(data)
     return db.Shopping.create(data)
   },
 
 
   findAll: function () {
+    console.log("findall")
     return db.Shopping
       .find({})
+      .sort({ 'store' : 1 })
       // .populate({
       //   path: 'notes',
       //   // populate the notes value in pictures model
@@ -20,9 +22,9 @@ module.exports = {
       // });
   },
 
-  remove: function (item) {
+  remove: function (id) {
     return db.Shopping
-    .remove({item : item})
+    .remove({_id : id})
   }
 
 

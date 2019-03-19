@@ -24,8 +24,8 @@ export default {
     return axios.get('./api/shopping');
   },
 
-  deleteItem: function (item) {
-    return axios.delete('./api/shopping/' + item)
+  deleteItem: function (id) {
+    return axios.delete('./api/shopping/' + id)
   },
 
 
