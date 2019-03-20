@@ -2,7 +2,8 @@
 
 .form-area {
   background:rgb(233, 233, 32);
-  font-family: 'Patrick Hand', cursive;
+  /* font-family: 'Patrick Hand', cursive; */
+  font-family: 'Kalam', cursive;
   border-top: 2px solid gray;
   border-bottom: 2px solid gray;
 }

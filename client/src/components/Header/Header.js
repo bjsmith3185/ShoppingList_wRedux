@@ -10,40 +10,14 @@ class Header extends Component {
     item: "",
     store: "",
     qty: "",
-    showInputForm: false,
-
-
+    showInputForm: false
   };
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  // timeout = () => {
-  //   setTimeout(
-  //     this.remainingItems, 2000
-  //   )
-  // }
-  // remainingItems = () => {
-
-  //   console.log("@@@@@@")
-
-  //   let count = 0;
-  //   for ( var i = 0; i < this.state.list.length; i++ ) {
-  //     if( !this.state.list.strikeThru ) {
-  //       count++;
-  //     }
-  //   }
-  //   console.log("this is count: " + count)
-  //   // return count;
-  //   this.setState({
-  //     countRemaining: count,
-  //   })
-  // }
 
   moreItems = event => {
     event.preventDefault();
@@ -79,17 +53,15 @@ class Header extends Component {
   };
 
   render() {
-    console.log(this.props.countRemaining);
+
     return (
       <div className="header-area">
-        <h1 className="text-center">Don't Forget</h1>
+        <h1 className="text-center header-title">Don't Forget</h1>
         <h3 className="text-center">{this.props.name}</h3>
 
         <div className="home-addbar">
           <div className="addbar-remaining">
-            <div className="remaining-count">
-            Items Remaining {this.props.countRemaining}
-            </div>
+              Items Remaining {this.props.countRemaining}
           </div>
           <div className="move-right" onClick={this.openInputForm}>
             <i className="fas fa-plus" />
@@ -110,24 +82,14 @@ class Header extends Component {
   }
 }
 
+
 // this brings in the state to display on this component
 const mapStateToProps = state => {
   console.log("hello");
   console.log(state);
-  // let count = 0;
-  // for ( var i = 0; i < state.list.length; i++ ) {
-  //   if( !state.list.strikeThru ) {
-  //     count++;
-  //   }
-  // }
-
-  // console.log(count)
-
   return {
     name: state.name,
-    
-    // list: state.list,
- countRemaining: state.countRemaining,
+    countRemaining: state.countRemaining
   };
 };
 
@@ -140,20 +102,6 @@ const mapDispachToProps = dispach => {
         val: data.val
       });
     }
-
-    // removeItem: data => {
-    //   dispach({ type: data.type, val: data.id });
-    // },
-
-    // getList: () => {
-    //   dispach({ type: "GET_LIST" });
-    // },
-
-    // checkOff: (id, strikeThru) => {
-    //   dispach({ type: "CHECK_OFF", val: {id: id, strikeThru: strikeThru}})
-    // }
-
-    // onAgeDown: () => dispach({type: 'AGE_DOWN', val: 1})
   };
 };
 

@@ -47,7 +47,6 @@ export function* watchGetList() {
     yield takeLatest('GET_LIST', getListAsync)
 }
 
-//-------------------------------------------------------------------
 
 //--------------------------------------------------------
 // Delete item from list

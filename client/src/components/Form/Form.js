@@ -6,21 +6,7 @@ const Form = props => (
     <div className="form-title text-center">Add Item to List</div>
 
     <div className="line-item">
-      {/* <div className="col-xs-4">
-        <span className="line-title">Item</span>
-      </div>
-
-      <div className="col-xs-8">
-        <input
-          className="line-input"
-          value={props.item}
-          name="item"
-          onChange={props.onChange}
-          type="text"
-          placeholder="Enter Item"
-        />
-      </div> */}
-
+  
       <label className="line-title">Item</label>
       <input
         className="line-input"

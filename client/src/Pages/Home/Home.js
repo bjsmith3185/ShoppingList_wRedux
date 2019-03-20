@@ -12,10 +12,10 @@ import Header from "../../components/Header";
 
 class HomePage extends Component {
   state = {
-    item: "",
-    store: "",
-    qty: "",
-    showInputForm: false,
+    // item: "",
+    // store: "",
+    // qty: "",
+    // showInputForm: false,
 
   };
 
@@ -28,27 +28,6 @@ class HomePage extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-
-  // moreItems = event => {
-  //   event.preventDefault();
-  //   console.log("button was clicked");
-  //   let data = {
-  //     type: "ADD_ITEM",
-  //     val: {
-  //       item: this.state.item,
-  //       store: this.state.store,
-  //       qty: this.state.qty,
-  //     }
-  //   };
-
-  //   this.props.addItem(data);
-  //   this.setState({
-  //     item: "",
-  //     store: "",
-  //     qty: "",
-  //     showInputForm: false,
-  //   });
-  // };
 
   delete = item_id => {
     console.log("deleting");
@@ -70,51 +49,22 @@ class HomePage extends Component {
     this.props.checkOff(id, strikeThru)
   };
 
-  // openInputForm = () => {
-  //   if(this.state.showInputForm) {
-  //     this.setState({
-  //       showInputForm: false
-  //     })
-  //   } else {
-  //     this.setState({
-  //       showInputForm: true
-  //     })
-  //   }
-  // }
+  
 
   render() {
     console.log(this.props);
 
     return (
       <div className="App ">
-        {/* <h1 className="text-center">Don't Forget</h1>
-        <h3 className="text-center">{this.props.name}</h3>
-     
-     
-        <div className="home-addbar">
-          <div className="move-right" onClick={this.openInputForm}><i className="fas fa-plus"></i></div>
-
-        </div>
-
-        {this.state.showInputForm && (
-          <Form
-          onChange={this.onChange}
-          item={this.state.item}
-          qty={this.state.qty}
-          store={this.state.store}
-          addToList={this.moreItems}
-        />
-        )} */}
-
+       
         <Header />
-        
-     
-
+ 
         <List list={this.props.list} delete={this.delete} strike={this.strike} />
       </div>
     );
   }
 }
+
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
@@ -147,7 +97,6 @@ const mapDispachToProps = dispach => {
       dispach({ type: "CHECK_OFF", val: {id: id, strikeThru: strikeThru}})
     }
 
-    // onAgeDown: () => dispach({type: 'AGE_DOWN', val: 1})
   };
 };
 
