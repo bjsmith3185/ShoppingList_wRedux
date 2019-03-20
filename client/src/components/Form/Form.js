@@ -38,14 +38,6 @@ const Form = (props) => (
           />
           <br/>
 
-          <span>Notes</span>
-          <input className="form-input"
-            value={props.note}
-            name="note"
-            onChange={props.onChange}
-            type="text"
-            placeholder="Add Note"
-          />
           <br/>
           <button className="form-btn btn btn-info" onClick={props.addToList}>Submit</button>
 

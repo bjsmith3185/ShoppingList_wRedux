@@ -1,7 +1,7 @@
 import initialState from "../store/state";
 
 
-const reducer = (state = initialState, action) => {
+const getList = (state = initialState, action) => {
   const newState = { ...state };
 
     // I only have one action: GET_LIST-ASYNC because
@@ -24,6 +24,21 @@ const reducer = (state = initialState, action) => {
       list: listArray
     };
   }
+
+
+  return newState;
+};
+
+export default getList;
+
+
+
+
+
+
+
+
+
 
 
   // if (action.type === "ADD_ITEM") {
@@ -62,8 +77,3 @@ const reducer = (state = initialState, action) => {
   //     list: state.list.filter(element => element.item !== action.val)
   //   };
   // }
-
-  return newState;
-};
-
-export default reducer;

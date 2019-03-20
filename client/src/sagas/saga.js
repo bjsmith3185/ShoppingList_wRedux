@@ -78,7 +78,33 @@ export function* watchDeleteItem() {
 
 //-------------------------------------------------------------------
 
+// Strike off list
 
+function* checkOffAsync(data) {
+    console.log("in the async function for check off")
+    console.log("is id in here")
+    console.log(data)
+
+    // api call to delte item from mongodb
+    // once item is delted, get the updated list info
+    // and return that data
+
+
+    // send request to client api file
+//     const myData = yield API.checkOff(data.val)
+
+//    console.log(myData)
+//     yield put({type: 'GET_LIST_ASYNC', val: myData.data});
+
+}
+
+
+export function* watchCheckOff() {
+    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
+    yield takeLatest('CHECK_OFF', checkOffAsync)
+}
+
+//-------------------------------------------------------------------
 
 
 

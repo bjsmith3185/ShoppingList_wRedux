@@ -20,7 +20,6 @@ router.route("/").post((req, res) => {
     item: req.body.val.item,
     store: req.body.val.store,
     qty: req.body.val.qty,
-    note: req.body.val.note
   };
 
   shopping

@@ -28,6 +28,10 @@ export default {
     return axios.delete('./api/shopping/' + id)
   },
 
+  checkOff: function (id, data) {
+    return axios.put('./api/shopping/' + id, data)
+  },
+
 
 };
 

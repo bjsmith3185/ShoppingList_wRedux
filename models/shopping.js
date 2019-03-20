@@ -6,12 +6,11 @@ const ShoppingSchema = new Schema({
   item: { type: String },
 
   store: { type: String },
-
-  note: { type: String },
   
   qty: { type: String, default: 1 },
-  
 
+  strikeThru: { type: Boolean, default: false },
+  
 });
 
 const Shopping = mongoose.model("Shopping", ShoppingSchema);

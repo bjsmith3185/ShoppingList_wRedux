@@ -14,7 +14,7 @@ class HomePage extends Component {
     item: "",
     store: "",
     qty: "",
-    note: ""
+
   };
 
   componentDidMount() {
@@ -25,11 +25,6 @@ class HomePage extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  // getListOnLoad = () => {
-  //   // API.getListItems()
-  //   //   .then(result => {})
-  //   //   .catch(err => console.log(err));
-  // };
 
   moreItems = event => {
     event.preventDefault();
@@ -40,7 +35,6 @@ class HomePage extends Component {
         item: this.state.item,
         store: this.state.store,
         qty: this.state.qty,
-        note: this.state.note
       }
     };
 
@@ -49,7 +43,6 @@ class HomePage extends Component {
       item: "",
       store: "",
       qty: "",
-      note: ""
     });
   };
 
@@ -63,18 +56,22 @@ class HomePage extends Component {
     this.props.removeItem(data);
   };
 
+  strike = (id, strikethru) => {
+    console.log("strike thru");
+    this.props.checkOff(id, strikethru)
+  };
+
   render() {
     console.log(this.props);
 
     return (
-      <div className="App text-center">
+      <div className="App ">
         <h1 className="text-center">Welcome to the shopping list</h1>
         <h3 className="text-center">{this.props.name}</h3>
         <hr />
         <br />
         <Form
           onChange={this.onChange}
-          note={this.state.note}
           item={this.state.item}
           qty={this.state.qty}
           store={this.state.store}
@@ -82,7 +79,7 @@ class HomePage extends Component {
         />
         <hr />
 
-        <List list={this.props.list} delete={this.delete} />
+        <List list={this.props.list} delete={this.delete} strike={this.strike} />
       </div>
     );
   }
@@ -100,13 +97,6 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispach => {
   return {
-    // addItem: () => { dispach({type: 'ADD_ITEM', val: {
-    //   item: 'milk',
-    //   store: 'teeter',
-    //   qty: 3,
-    //   note: 'skim',
-    // }}) },
-
     addItem: data => {
       dispach({
         type: data.type,
@@ -120,6 +110,10 @@ const mapDispachToProps = dispach => {
 
     getList: () => {
       dispach({ type: "GET_LIST" });
+    },
+
+    checkOff: (id, strikethru) => {
+      dispach({ type: "CHECK_OFF", val: {id: id, strikethru: strikethru}})
     }
 
     // onAgeDown: () => dispach({type: 'AGE_DOWN', val: 1})
