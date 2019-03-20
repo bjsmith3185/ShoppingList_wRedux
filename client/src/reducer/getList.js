@@ -19,9 +19,19 @@ const getList = (state = initialState, action) => {
       listArray.push(action.val[i]);
     }
 
+    let count = 0;
+    for (var k = 0; k < action.val.length; k++) {
+      if( action.val[k].strikeThru === false ) {
+        // console.log("this one is false")
+        // console.log(action.val)
+        count++
+      }
+    }
+
     return {
       ...state,
-      list: listArray
+      list: listArray,
+      countRemaining: count,
     };
   }
 

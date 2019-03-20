@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const shopping = require("../../controllers/shoppingController");
-
+// const shoppingList = require('../../middleware/getItemCount/logicForCount')
 // route  /api/shopping
 
 router.route("/").get((req, res) => {
   shopping
     .findAll()
+
+    // shoppingList.remainingItems()
     .then(dbresults => {
       res.json(dbresults);
     })

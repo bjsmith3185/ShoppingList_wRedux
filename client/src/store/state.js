@@ -2,6 +2,7 @@
 const initState = {
     name: '',
     list: [],
+    countRemaining: '',
 }
 
 // const initState = {

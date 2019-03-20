@@ -8,6 +8,7 @@ import Form from "../../components/Form";
 // Redux
 import { connect } from "react-redux";
 import List from "../../components/List";
+import Header from "../../components/Header";
 
 class HomePage extends Component {
   state = {
@@ -18,7 +19,8 @@ class HomePage extends Component {
 
   };
 
-  componentDidMount() {
+  // componentDidMount() {
+    componentWillMount() {
     this.props.getList();
   }
 
@@ -27,26 +29,26 @@ class HomePage extends Component {
   };
 
 
-  moreItems = event => {
-    event.preventDefault();
-    console.log("button was clicked");
-    let data = {
-      type: "ADD_ITEM",
-      val: {
-        item: this.state.item,
-        store: this.state.store,
-        qty: this.state.qty,
-      }
-    };
+  // moreItems = event => {
+  //   event.preventDefault();
+  //   console.log("button was clicked");
+  //   let data = {
+  //     type: "ADD_ITEM",
+  //     val: {
+  //       item: this.state.item,
+  //       store: this.state.store,
+  //       qty: this.state.qty,
+  //     }
+  //   };
 
-    this.props.addItem(data);
-    this.setState({
-      item: "",
-      store: "",
-      qty: "",
-      showInputForm: false,
-    });
-  };
+  //   this.props.addItem(data);
+  //   this.setState({
+  //     item: "",
+  //     store: "",
+  //     qty: "",
+  //     showInputForm: false,
+  //   });
+  // };
 
   delete = item_id => {
     console.log("deleting");
@@ -68,24 +70,24 @@ class HomePage extends Component {
     this.props.checkOff(id, strikeThru)
   };
 
-  openInputForm = () => {
-    if(this.state.showInputForm) {
-      this.setState({
-        showInputForm: false
-      })
-    } else {
-      this.setState({
-        showInputForm: true
-      })
-    }
-  }
+  // openInputForm = () => {
+  //   if(this.state.showInputForm) {
+  //     this.setState({
+  //       showInputForm: false
+  //     })
+  //   } else {
+  //     this.setState({
+  //       showInputForm: true
+  //     })
+  //   }
+  // }
 
   render() {
     console.log(this.props);
 
     return (
       <div className="App ">
-        <h1 className="text-center">Don't Forget</h1>
+        {/* <h1 className="text-center">Don't Forget</h1>
         <h3 className="text-center">{this.props.name}</h3>
      
      
@@ -102,7 +104,9 @@ class HomePage extends Component {
           store={this.state.store}
           addToList={this.moreItems}
         />
-        )}
+        )} */}
+
+        <Header />
         
      
 
