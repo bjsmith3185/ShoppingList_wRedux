@@ -22,6 +22,11 @@ module.exports = {
       // });
   },
 
+    update: function (id, data) {
+    return db.Shopping
+      .findOneAndUpdate({ _id: id }, data , { new : true })
+  },
+
   remove: function (id) {
     return db.Shopping
     .remove({_id : id})
@@ -39,12 +44,9 @@ module.exports = {
 
   
   
-  // update: function (id, data) {
-  //   return db.Pictures
-  //     .findOneAndUpdate({ _id: id }, data , { new : true })
-  // },
 
-  ,
+
+  
 
   // removeAll: function () {
   //   return db.Pictures

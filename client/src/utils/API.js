@@ -29,6 +29,7 @@ export default {
   },
 
   checkOff: function (id, data) {
+    console.log("api")
     return axios.put('./api/shopping/' + id, data)
   },
 

@@ -14,6 +14,7 @@ class HomePage extends Component {
     item: "",
     store: "",
     qty: "",
+    showInputForm: false,
 
   };
 
@@ -43,6 +44,7 @@ class HomePage extends Component {
       item: "",
       store: "",
       qty: "",
+      showInputForm: false,
     });
   };
 
@@ -56,27 +58,52 @@ class HomePage extends Component {
     this.props.removeItem(data);
   };
 
-  strike = (id, strikethru) => {
+  strike = (id, strikeThru) => {
     console.log("strike thru");
-    this.props.checkOff(id, strikethru)
+    if ( strikeThru ) {
+      strikeThru = false
+    } else {
+      strikeThru = true
+    }
+    this.props.checkOff(id, strikeThru)
   };
+
+  openInputForm = () => {
+    if(this.state.showInputForm) {
+      this.setState({
+        showInputForm: false
+      })
+    } else {
+      this.setState({
+        showInputForm: true
+      })
+    }
+  }
 
   render() {
     console.log(this.props);
 
     return (
       <div className="App ">
-        <h1 className="text-center">Welcome to the shopping list</h1>
+        <h1 className="text-center">My List</h1>
         <h3 className="text-center">{this.props.name}</h3>
         <hr />
-        <br />
-        <Form
+     
+        <div>
+          <div className=" move-right" onClick={this.openInputForm}><i className="fas fa-plus"></i></div>
+
+        </div>
+
+        {this.state.showInputForm && (
+          <Form
           onChange={this.onChange}
           item={this.state.item}
           qty={this.state.qty}
           store={this.state.store}
           addToList={this.moreItems}
         />
+        )}
+        
         <hr />
 
         <List list={this.props.list} delete={this.delete} strike={this.strike} />
@@ -112,8 +139,8 @@ const mapDispachToProps = dispach => {
       dispach({ type: "GET_LIST" });
     },
 
-    checkOff: (id, strikethru) => {
-      dispach({ type: "CHECK_OFF", val: {id: id, strikethru: strikethru}})
+    checkOff: (id, strikeThru) => {
+      dispach({ type: "CHECK_OFF", val: {id: id, strikeThru: strikeThru}})
     }
 
     // onAgeDown: () => dispach({type: 'AGE_DOWN', val: 1})

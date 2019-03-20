@@ -59,8 +59,11 @@ border-bottom: 1px solid gray;
 
 .strike {
   text-decoration: line-through;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  opacity: .7;
 }
-
 
 
 

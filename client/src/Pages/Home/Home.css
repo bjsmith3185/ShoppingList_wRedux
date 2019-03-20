@@ -1,5 +1,10 @@
 
-
+.move-right {
+    color: green;
+    text-align: right;
+    margin-right: 15px;
+    font-size: 25px;
+}
 
 
 .home-title {
