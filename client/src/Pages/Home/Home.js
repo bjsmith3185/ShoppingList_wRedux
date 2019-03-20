@@ -85,12 +85,12 @@ class HomePage extends Component {
 
     return (
       <div className="App ">
-        <h1 className="text-center">My List</h1>
+        <h1 className="text-center">Don't Forget</h1>
         <h3 className="text-center">{this.props.name}</h3>
-        <hr />
      
-        <div>
-          <div className=" move-right" onClick={this.openInputForm}><i className="fas fa-plus"></i></div>
+     
+        <div className="home-addbar">
+          <div className="move-right" onClick={this.openInputForm}><i className="fas fa-plus"></i></div>
 
         </div>
 
@@ -104,7 +104,7 @@ class HomePage extends Component {
         />
         )}
         
-        <hr />
+     
 
         <List list={this.props.list} delete={this.delete} strike={this.strike} />
       </div>

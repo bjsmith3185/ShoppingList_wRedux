@@ -6,26 +6,22 @@ const List = props => (
     {props.list && (
       <div className="item-list-container">
         {props.list.map((item, i) => (
-          <div className="item" onClick={() => props.strike(item._id, item.strikeThru)} key={i}>
+          <div
+            className="item"
+            onClick={() => props.strike(item._id, item.strikeThru)}
+            key={i}
+          >
             {item.strikeThru ? (
               <div className="item-container text-left strike">
                 <span className="item-name">{item.item}</span>
-                <span className="item-qty">Qty: {item.qty}</span>
+                <span className="item-qty">{item.qty}</span>
               </div>
             ) : (
               <div className="item-container text-left">
                 <span className="item-name">{item.item}</span>
-                <span className="item-qty">Qty: {item.qty}</span>
+                <span className="item-qty">&#40; {item.qty} &#41;</span>
               </div>
             )}
-
-            {/* <div className="item-container text-left">
-  
-              <span className="item-name">{item.item}</span>
-
-              <span className="item-qty">Qty: {item.qty}</span>
-             
-            </div> */}
 
             <div className="item-btn-container text-right">
               <div
@@ -35,7 +31,6 @@ const List = props => (
                 X
               </div>
             </div>
-            {/* <hr className="item-line" /> */}
           </div>
         ))}
       </div>

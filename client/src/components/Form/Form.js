@@ -1,51 +1,68 @@
 import React from "react";
 import "./Form.css";
 
-const Form = (props) => (
+const Form = props => (
+  <div className="form-area">
+    <div className="form-title text-center">Add Item to List</div>
 
-  <div className="background-area">
-    <div className="row">
-      <div className="col-2"></div>
-      <div className="col-6">
-        <div className="form-title">Add Item to List</div>
-          <span>Item</span>
-          <input className="form-input"
-            value={props.item}
-            name="item"
-            onChange={props.onChange}
-            type="text"
-            placeholder="Enter Item"
-          />
-          <br/>
-
-          <span>Qty</span>
-          <input className="form-input"
-            value={props.qty}
-            name="qty"
-            onChange={props.onChange}
-            type="text"
-            placeholder="Qty"
-          />
-          <br/>
-
-          <span>Store</span>
-          <input className="form-input"
-            value={props.store}
-            name="store"
-            onChange={props.onChange}
-            type="text"
-            placeholder="Store"
-          />
-          <br/>
-
-          <br/>
-          <button className="form-btn btn btn-info" onClick={props.addToList}>Submit</button>
-
+    <div className="line-item">
+      {/* <div className="col-xs-4">
+        <span className="line-title">Item</span>
       </div>
+
+      <div className="col-xs-8">
+        <input
+          className="line-input"
+          value={props.item}
+          name="item"
+          onChange={props.onChange}
+          type="text"
+          placeholder="Enter Item"
+        />
+      </div> */}
+
+      <label className="line-title">Item</label>
+      <input
+        className="line-input"
+        value={props.item}
+        name="item"
+        onChange={props.onChange}
+        type="text"
+        placeholder="Enter Item"
+      />
     </div>
 
+    <div className="line-item">
+      <label className="line-title">Qty</label>
+      <input
+        className="line-input"
+        value={props.qty}
+        name="qty"
+        onChange={props.onChange}
+        type="text"
+        placeholder="Qty"
+      />
+    </div>
+
+    <div className="line-item">
+      <label className="line-title">Store</label>
+      <input
+        className="line-input"
+        value={props.store}
+        name="store"
+        onChange={props.onChange}
+        type="text"
+        placeholder="Store"
+      />
+    </div>
+
+      <div className="form-btn-area text-center">
+      <button className="text-center form-btn btn btn-info" onClick={props.addToList}>
+      Add
+    </button>
+      </div>
+     
   </div>
 );
 
 export default Form;
-

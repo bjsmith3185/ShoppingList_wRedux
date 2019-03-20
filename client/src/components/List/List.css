@@ -14,6 +14,7 @@ padding-top: 5px;
   padding-bottom: 5px;
 
 border-bottom: 1px solid gray;
+cursor: pointer;
 }
 
 .item-container {
@@ -49,6 +50,7 @@ border-bottom: 1px solid gray;
   color: red;
   font-weight: bold;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 .item-line {
