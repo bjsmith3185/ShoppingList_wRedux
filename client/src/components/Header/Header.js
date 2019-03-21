@@ -7,9 +7,6 @@ import "./Header.css";
 
 class Header extends Component {
   state = {
-    item: "",
-    store: "",
-    qty: "",
     showInputForm: false
   };
 
@@ -19,27 +16,7 @@ class Header extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  moreItems = event => {
-    event.preventDefault();
-    console.log("button was clicked");
-    let data = {
-      type: "ADD_ITEM",
-      val: {
-        item: this.state.item,
-        store: this.state.store,
-        qty: this.state.qty
-      }
-    };
-
-    this.props.addItem(data);
-    this.setState({
-      item: "",
-      store: "",
-      qty: "",
-      showInputForm: false
-    });
-  };
-
+ 
   openInputForm = () => {
     if (this.state.showInputForm) {
       this.setState({
