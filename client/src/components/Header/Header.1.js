@@ -8,8 +8,7 @@ import "./Header.css";
 
 class Header extends Component {
   state = {
-    showInputForm: false,
-    showMenu: false,
+    showInputForm: false
   };
 
   componentDidMount() {}
@@ -31,32 +30,17 @@ class Header extends Component {
     }
   };
 
-  showDropdown = () => {
-    if (this.state.showMenu) {
-      this.setState({
-        showMenu: false
-      });
-    } else {
-      this.setState({
-        showMenu: true
-      });
-    }
-    // document.addEventListener('click', this.closeMenu);
-  };
-
   render() {
 
     return (
       <div className="header-area">
         <h1 className="text-center header-title">Don't Forget</h1>
-        <div onClick={this.showDropdown} className="menu-button-area">
-        <i className="mybutton fas fa-bars"></i>
+        <div className="menu-button-area">
+        {/* <i class="mybutton fas fa-bars"></i> */}
+          <Menu />
         </div>
         <h3 className="text-center">{this.props.name}</h3>
-        {this.state.showMenu && (
-          <Menu   />
-        )}
-        
+
         <div className="home-addbar">
           <div className="addbar-remaining">
               Items Remaining {this.props.countRemaining}

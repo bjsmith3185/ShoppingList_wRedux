@@ -13,6 +13,12 @@ export default {
     return axios.post("/populate/shopping");
   },
 
+  //============ system
+
+  getAllData: function () {
+    return axios.get('./api/system/all')
+  },
+
   
   // =============== shopping
 
@@ -32,6 +38,16 @@ export default {
     console.log("api")
     return axios.put('./api/shopping/' + id, data)
   },
+
+  //==================== User
+
+  updateUserData: function (data) {
+    console.log("user update api")
+    console.log(data)
+    return axios.put('./api/users', data)
+  }
+
+
 
 
 };

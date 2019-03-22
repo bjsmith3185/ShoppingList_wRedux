@@ -3,6 +3,7 @@ const initState = {
     name: '',
     list: [],
     countRemaining: '',
+    myStore: '',
 }
 
 // const initState = {

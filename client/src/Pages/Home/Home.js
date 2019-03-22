@@ -21,7 +21,8 @@ class HomePage extends Component {
 
   // componentDidMount() {
     componentWillMount() {
-    this.props.getList();
+    // this.props.getList();
+    this.props.loadAllData();
   }
 
   onChange = event => {
@@ -95,6 +96,10 @@ const mapDispachToProps = dispach => {
 
     checkOff: (id, strikeThru) => {
       dispach({ type: "CHECK_OFF", val: {id: id, strikeThru: strikeThru}})
+    },
+
+    loadAllData: () => {
+      dispach({ type: "ALL_DATA" });
     }
 
   };

@@ -104,10 +104,55 @@ export function* watchCheckOff() {
 }
 
 //-------------------------------------------------------------------
+//   sets the users selected store
+function* chooseStoreAsync(data) {
+    // console.log("in the async function")
+    // console.log(data)
+    // I can probably put my request to teh server here
+    // yield delay(4000);
+
+    // send request to client api file
+    let info = {
+        myStore: data.val
+    }
+    const myData = yield API.updateUserData(info)
+
+//    console.log(myData)
+    yield put({type: 'SET_STORE_ASYNC', val: myData.data});
+
+}
 
 
+export function* watchChooseStore() {
+    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
+    yield takeLatest('SET_STORE', chooseStoreAsync)
+}
+
+//--------------------------------------------------------
+//         get all data on Home.js Load
+
+function* allDataAsync() {
+    // console.log("in the async function for get all list")
+    // console.log(data)
+    // I can probably put my request to teh server here
+    // yield delay(4000);
+
+    // send request to client api file
+    const myData = yield API.getAllData()
+    console.log("$$$$$$$4")
+   console.log(myData)
+    yield put({type: 'ALL_DATA_ASYNC', val: myData.data});
+
+}
 
 
+export function* watchAllData() {
+    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
+    yield takeLatest('ALL_DATA', allDataAsync)
+}
+
+
+//--------------------------------------------------------
 
 
 

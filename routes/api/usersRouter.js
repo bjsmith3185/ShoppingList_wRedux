@@ -12,4 +12,12 @@ router.route("/").get((req, res) => {
     .catch(err => res.status(422).json(err));
 });
 
+router.route('/').put((req, res) => {
+  users
+  .update(req.body)
+  .then(dbresults => {
+    res.json(dbresults);
+  })
+  .catch(err => res.status(422).json(err));
+})
 module.exports = router;

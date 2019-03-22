@@ -35,10 +35,23 @@
 }
 
 
+.menu-button-area {
+  /* background: red; */
+  width: 50px;
+  height: 44px;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  /* padding-top: 5px; */
+  
+}
 
 
-
-
+.mybutton {
+  font-size: 30px;
+  margin-left: 10px;
+  /* margin-top: 5px; */
+}
 
 
 
