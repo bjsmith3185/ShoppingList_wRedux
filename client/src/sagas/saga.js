@@ -1,5 +1,3 @@
-
-import {delay} from 'redux-saga/effects';
 import { takeLatest, put } from 'redux-saga/effects';
 
 import API from '../utils/API'
@@ -106,10 +104,8 @@ export function* watchCheckOff() {
 //-------------------------------------------------------------------
 //   sets the users selected store
 function* chooseStoreAsync(data) {
-    // console.log("in the async function")
-    // console.log(data)
-    // I can probably put my request to teh server here
-    // yield delay(4000);
+   
+    // going to create a display list also
 
     // send request to client api file
     let info = {
@@ -139,8 +135,8 @@ function* allDataAsync() {
 
     // send request to client api file
     const myData = yield API.getAllData()
-    console.log("$$$$$$$4")
-   console.log(myData)
+//     console.log("$$$$$$$4")
+//    console.log(myData)
     yield put({type: 'ALL_DATA_ASYNC', val: myData.data});
 
 }

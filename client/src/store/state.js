@@ -4,6 +4,7 @@ const initState = {
     list: [],
     countRemaining: '',
     myStore: '',
+    storeList: [],
 }
 
 // const initState = {

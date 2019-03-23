@@ -16,21 +16,24 @@
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
-  color: gray;
-
+  color: black;
+  cursor: pointer;
 }
 
 .stores-dropdown {
   width: 100%;
+  font-family: 'Kalam', cursive;
   /* height: 100px; */
-  background: orange;
+  /* background: orange; */
 }
 
 .store-listing {
   margin-top: 8px;
   margin-left: 50px;
   font-size: 20px;
-  color: black;
+  cursor: pointer;
+  color: gray;
+  font-family: 'Kalam', cursive;
 }
 
 

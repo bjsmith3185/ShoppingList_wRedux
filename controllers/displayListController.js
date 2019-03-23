@@ -5,13 +5,13 @@ module.exports = {
   create: function (data) {
     // console.log("shopping-controller")
     // console.log(data)
-    return db.Shopping.create(data)
+    return db.DisplayList.create(data)
   },
 
 
   findAll: function () {
     console.log("findall")
-    return db.Shopping
+    return db.DisplayList
       .find({})
       .sort({ 'store' : 1 })
       // .populate({
@@ -23,19 +23,14 @@ module.exports = {
   },
 
     update: function (id, data) {
-    return db.Shopping
+    return db.DisplayList
       .findOneAndUpdate({ _id: id }, data , { new : true })
   },
 
   remove: function (id) {
-    return db.Shopping
+    return db.DisplayList
     .remove({_id : id})
-  },
-
-  findByStore: function(store) {
-    return db.Shopping
-    .find({ store: store})
-  },
+  }
 
 
 

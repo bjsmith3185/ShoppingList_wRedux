@@ -5,8 +5,8 @@ const getList = (state = initialState, action) => {
 
   // reducer for get list
   if (action.type === "GET_LIST_ASYNC") {
-    console.log("reducer, getting list");
-    console.log(action.val);
+    // console.log("reducer, getting list");
+    // console.log(action.val);
 
     let listArray = [];
     for (var i = 0; i < action.val.length; i++) {
@@ -31,19 +31,19 @@ const getList = (state = initialState, action) => {
 
   // reducer for get all data
   if (action.type === "ALL_DATA_ASYNC") {
-    console.log("reducer, all data");
-    console.log(action.val);
+    // console.log("reducer, all data");
+    // console.log(action.val);
     let storeInfo = action.val.storeData;
     let userInfo = action.val.userData;
 
     let listArray = [];
-    for (var i = 0; i < storeInfo.length; i++) {
-      listArray.push(storeInfo[i]);
+    for (var r = 0; r < storeInfo.length; r++) {
+      listArray.push(storeInfo[r]);
     }
 
     let count = 0;
-    for (var k = 0; k < storeInfo.length; k++) {
-      if (storeInfo[k].strikeThru === false) {
+    for (var q = 0; q < storeInfo.length; q++) {
+      if (storeInfo[q].strikeThru === false) {
         // console.log("this one is false")
         // console.log(action.val)
         count++;
@@ -61,8 +61,8 @@ const getList = (state = initialState, action) => {
 
   // reducer for getting my store
   if (action.type === "SET_STORE_ASYNC") {
-    console.log("reducer, set my store");
-    console.log(action.val);
+    // console.log("reducer, set my store");
+    // console.log(action.val);
 
     return {
       ...state,

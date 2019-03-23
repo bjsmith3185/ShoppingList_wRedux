@@ -9,27 +9,13 @@ import "./Header.css";
 class Header extends Component {
   state = {
     showInputForm: false,
-    showDropDownMenu: false,
-    showStores: false,
-    stores: [],
+    showMenu: false,
   };
 
   componentDidMount() {}
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  };
-
-  showDropdown = () => {
-    if (this.state.showDropDownMenu) {
-      this.setState({
-        showDropDownMenu: false
-      });
-    } else {
-      this.setState({
-        showDropDownMenu: true
-      });
-    }
   };
 
  
@@ -45,79 +31,32 @@ class Header extends Component {
     }
   };
 
-  selectStore = (store) => {
-    console.log(store)
-    const info = {
-      val: store,
-      type: 'SET_STORE'
-    }
-    this.props.setStore(info)
-    this.setState({
-      showStores: false,
-      showDropDownMenu: false,
-    })
-  };
-
-  closeMenu = (event) => {
-
-    if (!this.dropdownMenu.contains(event.target)) {
+  showDropdown = () => {
+    if (this.state.showMenu) {
       this.setState({
-        showMenu: false,
-      })
-      document.removeEventListener('click', this.closeMenu);
+        showMenu: false
+      });
+    } else {
+      this.setState({
+        showMenu: true
+      });
     }
-    
+    // document.addEventListener('click', this.closeMenu);
   };
-
-  openStores = () => {
-    console.log("clicked open stores")
-    this.storeNames()
-    if (this.state.showStores) {
-          this.setState({
-            showStores: false
-          });
-        } else {
-          this.setState({
-            showStores: true
-          });
-        }
-  };
-
-  storeNames = () => {
-    let names = []
-    names = this.props.list.map(item => item.store)
-    let uniqueNames = [...new Set(names)];
-    this.setState({
-      stores: uniqueNames
-    })
-  }
-
-
 
   render() {
 
     return (
       <div className="header-area">
         <h1 className="text-center header-title">Don't Forget</h1>
-        <div 
-        className="menu-button-area"
-        onClick={this.showDropdown}
-        >
+        <div onClick={this.showDropdown} className="menu-button-area">
         <i className="mybutton fas fa-bars"></i>
-         </div>
+        </div>
         <h3 className="text-center">{this.props.name}</h3>
-
-        {/* dropdown menu goes here  */}
-
-        {this.state.showDropDownMenu && (
-        <Menu 
-        openStores={this.openStores}
-        showStores={this.state.showStores}
-        stores={this.state.stores}
-        selectStore={this.selectStore}
-        />
+        {this.state.showMenu && (
+          <Menu   />
         )}
-
+        
         <div className="home-addbar">
           <div className="addbar-remaining">
               Items Remaining {this.props.countRemaining}
@@ -144,12 +83,11 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  console.log("hello");
-  console.log(state);
+  // console.log("hello");
+  // console.log(state);
   return {
     name: state.name,
-    countRemaining: state.countRemaining,
-    list: state.list,
+    countRemaining: state.countRemaining
   };
 };
 
@@ -161,14 +99,7 @@ const mapDispachToProps = dispach => {
         type: data.type,
         val: data.val
       });
-    },
-
-    setStore: data => {
-      dispach({
-        type: data.type,
-        val: data.val
-      });
-    },
+    }
   };
 };
 
