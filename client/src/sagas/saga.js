@@ -2,153 +2,70 @@ import { takeLatest, put } from 'redux-saga/effects';
 
 import API from '../utils/API'
 
-// the data paramater should contian the payload from HOME.js
+
+
+
+//   Adds an item to the shopping collection
 function* addItemAsync(data) {
-    // console.log("in the async function")
-    // console.log(data)
-    // I can probably put my request to teh server here
-    // yield delay(4000);
-
-    // send request to client api file
-    const myData = yield API.updateShoppingList(data)
-
+    console.log(data)
+    const myData = yield API.addItem(data.val)
 //    console.log(myData)
-    yield put({type: 'GET_LIST_ASYNC', val: myData.data});
-
+    yield put({type: 'SET_STORELIST_COUNT', val: myData.data});
 }
 
-
 export function* watchAddItem() {
-    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
     yield takeLatest('ADD_ITEM', addItemAsync)
 }
 
 //--------------------------------------------------------
-
-function* getListAsync(data) {
-    // console.log("in the async function for get all list")
+//    Load all data when Home page loads
+function* loadDataAsync(data) {
     // console.log(data)
-    // I can probably put my request to teh server here
-    // yield delay(4000);
-
-    // send request to client api file
-    const myData = yield API.getListItems()
-
-//    console.log(myData)
-    yield put({type: 'GET_LIST_ASYNC', val: myData.data});
-
+    const myData = yield API.loadData(data.val)
+    yield put({type: 'SET_ALL_DATA', val: myData.data});
 }
 
-
-export function* watchGetList() {
-    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
-    yield takeLatest('GET_LIST', getListAsync)
+export function* watchLoadData() {
+    yield takeLatest('LOAD_DATA', loadDataAsync)
 }
-
 
 //--------------------------------------------------------
-// Delete item from list
+//  strike thru list item
 
-function* deleteItemAsync(data) {
-    // console.log("in the async function for deletee item")
-    // console.log("is id in here")
-    // console.log(data)
-
-    // api call to delte item from mongodb
-    // once item is delted, get the updated list info
-    // and return that data
-
-
-    // send request to client api file
-    const myData = yield API.deleteItem(data.val)
-
-//    console.log(myData)
-    yield put({type: 'GET_LIST_ASYNC', val: myData.data});
-
+function* strikeThruAsync(data) {
+    const myData = yield API.strikeThru(data.val.id, {strikeThru: data.val.strikeThru})
+    yield put({type: 'SET_STORELIST_COUNT', val: myData.data});
 }
 
+export function* watchStrikeThru() {
+    yield takeLatest('STRIKE_THRU', strikeThruAsync)
+}
+
+//-------------------------------------------------------------------
+
+// delete item
+
+function* deleteItemAsync(data) {
+    console.log(data.val)
+    const myData = yield API.deleteItem(data.val)
+    yield put({type: 'SET_STORELIST_COUNT', val: myData.data});
+}
 
 export function* watchDeleteItem() {
-    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
     yield takeLatest('DELETE_ITEM', deleteItemAsync)
 }
 
 //-------------------------------------------------------------------
-
-// Strike off list
-
-function* checkOffAsync(data) {
-    // console.log("in the async function for check off")
-    // console.log("is id in here")
-    // console.log(data)
-
-    // api call to delte item from mongodb
-    // once item is delted, get the updated list info
-    // and return that data
-
-
-    // send request to client api file
-    const myData = yield API.checkOff(data.val.id, {strikeThru: data.val.strikeThru})
-
-//    console.log(myData)
-    yield put({type: 'GET_LIST_ASYNC', val: myData.data});
-
+//  select store
+function* setStoreAsync(data) {
+    const myData = yield API.selectStore(data.val)
+    yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
 }
 
-
-export function* watchCheckOff() {
-    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
-    yield takeLatest('CHECK_OFF', checkOffAsync)
+export function* watchSetStore() {
+    yield takeLatest('SET_STORE', setStoreAsync)
 }
 
-//-------------------------------------------------------------------
-//   sets the users selected store
-function* chooseStoreAsync(data) {
-   
-    // going to create a display list also
-
-    // send request to client api file
-    let info = {
-        myStore: data.val
-    }
-    const myData = yield API.updateUserData(info)
-
-//    console.log(myData)
-    yield put({type: 'SET_STORE_ASYNC', val: myData.data});
-
-}
-
-
-export function* watchChooseStore() {
-    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
-    yield takeLatest('SET_STORE', chooseStoreAsync)
-}
-
-//--------------------------------------------------------
-//         get all data on Home.js Load
-
-function* allDataAsync() {
-    // console.log("in the async function for get all list")
-    // console.log(data)
-    // I can probably put my request to teh server here
-    // yield delay(4000);
-
-    // send request to client api file
-    const myData = yield API.getAllData()
-//     console.log("$$$$$$$4")
-//    console.log(myData)
-    yield put({type: 'ALL_DATA_ASYNC', val: myData.data});
-
-}
-
-
-export function* watchAllData() {
-    // console.log("in the add_item saga!!!!!!!!!!!!!!!!11")
-    yield takeLatest('ALL_DATA', allDataAsync)
-}
-
-
-//--------------------------------------------------------
 
 
 

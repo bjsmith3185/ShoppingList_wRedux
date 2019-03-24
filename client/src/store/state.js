@@ -1,10 +1,11 @@
 
 const initState = {
     name: '',
-    list: [],
+    allList: [],
     countRemaining: '',
     myStore: '',
     storeList: [],
+    storeNames: [],
 }
 
 // const initState = {

@@ -29,7 +29,7 @@ class HomePage extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("hello");
+  // console.log("state coming into home.js");
   // console.log(state);
   return {
    
@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 const mapDispachToProps = dispach => {
   return {
     loadAllData: () => {
-      dispach({ type: "ALL_DATA" });
+      dispach({ type: "LOAD_DATA", val: '5c8e73b6add5286e74485f43' });
     }
   };
 };

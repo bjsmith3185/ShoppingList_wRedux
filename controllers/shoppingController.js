@@ -33,8 +33,15 @@ module.exports = {
   },
 
   findByStore: function(store) {
+    // console.log("in findbystore")
+    // console.log(store)
     return db.Shopping
     .find({ store: store})
+  },
+
+  findById: function(id) {
+    return db.Shopping
+    .findOne({ _id: id})
   },
 
 

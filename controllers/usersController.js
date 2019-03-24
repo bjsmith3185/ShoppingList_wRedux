@@ -7,7 +7,9 @@ module.exports = {
     return db.Users.create(data);
   },
 
-  update: function(data) {
+  update: function(data, user_id) {
+    // console.log("look here")
+    // console.log(data)
     return db.Users.findOneAndUpdate(
       { _id: "5c8e73b6add5286e74485f43" },
       data,

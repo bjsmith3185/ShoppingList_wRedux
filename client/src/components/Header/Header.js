@@ -11,13 +11,34 @@ class Header extends Component {
     showInputForm: false,
     showDropDownMenu: false,
     showStores: false,
-    stores: []
+    stores: [],
+    item: "",
+    store: "",
+    qty: "",
   };
 
   componentDidMount() {}
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  moreItems = event => {
+    event.preventDefault();
+    console.log("button was clicked");
+    let data = {
+        item: this.state.item,
+        store: this.state.store,
+        qty: this.state.qty
+    };
+
+    this.props.addItem(data);
+    this.setState({
+      item: "",
+      store: "",
+      qty: "",
+      showInputForm: false
+    });
   };
 
   showDropdown = () => {
@@ -49,11 +70,10 @@ class Header extends Component {
   // unique store list of items
   selectStore = store => {
     // console.log(store);
-    const info = {
-      val: store,
-      type: "SET_STORE"
+    const myStore = {
+     myStore: store
     };
-    this.props.setStore(info);
+    this.props.setStore(myStore);
     this.setState({
       showStores: false,
       showDropDownMenu: false
@@ -71,7 +91,7 @@ class Header extends Component {
 
   openStores = () => {
     console.log("clicked open stores");
-    this.storeNames();
+    // this.storeNames();
     if (this.state.showStores) {
       this.setState({
         showStores: false
@@ -83,14 +103,14 @@ class Header extends Component {
     }
   };
 
-  storeNames = () => {
-    let names = [];
-    names = this.props.list.map(item => item.store);
-    let uniqueNames = [...new Set(names)];
-    this.setState({
-      stores: uniqueNames
-    });
-  };
+  // storeNames = () => {
+  //   let names = [];
+  //   names = this.props.list.map(item => item.store);
+  //   let uniqueNames = [...new Set(names)];
+  //   this.setState({
+  //     stores: uniqueNames
+  //   });
+  // };
 
   render() {
     return (
@@ -114,7 +134,7 @@ class Header extends Component {
           <Menu
             openStores={this.openStores}
             showStores={this.state.showStores}
-            stores={this.state.stores}
+            stores={this.props.storeNames}
             selectStore={this.selectStore}
           />
         )}
@@ -135,12 +155,15 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("hello");
-  // console.log(state);
+  console.log("state coming into Header.js");
+  console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,
-    list: state.list
+    allList: state.allList,
+    storeList: state.storeList,
+    storeNames: state.storeNames,
+    myStore: state.myStore
   };
 };
 
@@ -149,15 +172,15 @@ const mapDispachToProps = dispach => {
   return {
     addItem: data => {
       dispach({
-        type: data.type,
-        val: data.val
+        type: 'ADD_ITEM',
+        val: data
       });
     },
 
     setStore: data => {
       dispach({
-        type: data.type,
-        val: data.val
+        type: 'SET_STORE',
+        val: data
       });
     }
   };

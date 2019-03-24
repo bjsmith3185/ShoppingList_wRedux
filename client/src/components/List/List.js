@@ -11,16 +11,10 @@ class List extends Component {
 
   delete = item_id => {
     console.log("deleting");
-    let data = {
-      type: "DELETE_ITEM",
-      id: item_id
-    };
-
-    this.props.removeItem(data);
+     this.props.removeItem(item_id);
   };
 
   strike = (id, strikeThru) => {
-    console.log("strike thru");
     if (strikeThru) {
       strikeThru = false;
     } else {
@@ -39,12 +33,12 @@ class List extends Component {
           </div>
         </div>
 
-        {this.props.list && (
+        {this.props.storeList && (
           <div className="item-list-container">
-            {this.props.list.map((item, i) => (
+            {this.props.storeList.map((item, i) => (
               <div
                 className="item"
-                onClick={() => this.strike(item._id, item.strikeThru)}
+                // onClick={() => this.strike(item._id, item.strikeThru)}
                 key={i}
               >
                 {item.strikeThru ? (
@@ -82,35 +76,25 @@ const mapStateToProps = state => {
   // console.log(state);
   return {
     name: state.name,
-    list: state.list,
+    countRemaining: state.countRemaining,
+    allList: state.allList,
+    storeList: state.storeList,
+    storeNames: state.storeNames,
     myStore: state.myStore
   };
 };
 
 const mapDispachToProps = dispach => {
   return {
-    addItem: data => {
-      dispach({
-        type: data.type,
-        val: data.val
-      });
-    },
-
-    removeItem: data => {
-      dispach({ type: data.type, val: data.id });
-    },
-
-    getList: () => {
-      dispach({ type: "GET_LIST" });
-    },
 
     checkOff: (id, strikeThru) => {
-      dispach({ type: "CHECK_OFF", val: { id: id, strikeThru: strikeThru } });
+      dispach({ type: "STRIKE_THRU", val: { id: id, strikeThru: strikeThru } });
     },
 
-    loadAllData: () => {
-      dispach({ type: "ALL_DATA" });
-    }
+    removeItem: id => {
+      dispach({ type: "DELETE_ITEM", val:id });
+    },
+
   };
 };
 
