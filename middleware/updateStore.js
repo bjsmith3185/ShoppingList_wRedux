@@ -11,7 +11,7 @@ module.exports = {
         //    console.log(storeName)
             users.update(storeName)
             .then(dbresult => {
-                console.log(dbresult)
+                // console.log(dbresult)
 
                 storeList.storeList(dbresult.myStore)
                 .then(storeResult => {

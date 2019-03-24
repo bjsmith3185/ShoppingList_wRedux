@@ -21,11 +21,12 @@ export default {
   },
 
   strikeThru: function(shopping_id, data) {
+
     return axios.put('/api/system/strike/'+ shopping_id, data)
   },
 
   deleteItem: function(id) {
-    console.log(id)
+    // console.log(id)
     return axios.delete('/api/system/delete/'+id)
   },
 
@@ -34,7 +35,7 @@ export default {
   },
 
   addItem: function(data) {
-    console.log(data)
+    // console.log(data)
     return axios.post('/api/system/addItem/', data)
   },
 

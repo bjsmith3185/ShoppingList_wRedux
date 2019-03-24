@@ -25,7 +25,7 @@ class Header extends Component {
 
   moreItems = event => {
     event.preventDefault();
-    console.log("button was clicked");
+    // console.log("button was clicked");
     let data = {
         item: this.state.item,
         store: this.state.store,
@@ -120,13 +120,13 @@ class Header extends Component {
           <i className="mybutton fas fa-bars" />
         </div>
         {/* Title  */}
-        <h1 className="text-center header-title">Don't Forget</h1>
+        <h1 className="text-center header-title">Hey Don't Forget</h1>
         {/* Add Item Button  */}
         <div className="add-button-area" onClick={this.openInputForm}>
           <i className="myAdd fas fa-plus" />
         </div>
 
-        <h3 className="text-center">{this.props.name}</h3>
+        <h3 className="header-name-area text-center">{this.props.name}</h3>
 
         {/* dropdown menu goes here  */}
 
@@ -155,8 +155,8 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  console.log("state coming into Header.js");
-  console.log(state);
+  // console.log("state coming into Header.js");
+  // console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,

@@ -29,7 +29,7 @@ router.route("/load/:id").get((req, res) => {
 })
 
 router.route("/strike/:id").put((req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   strikeThru.strike(req.params.id, req.body)
   .then(result => {
     res.json(result)
@@ -38,8 +38,8 @@ router.route("/strike/:id").put((req, res) => {
 })
 
 router.route("/delete/:id").delete((req, res) => {
-  console.log("!!!!!")
-  console.log(req.params.id)
+  // console.log("!!!!!")
+  // console.log(req.params.id)
   remove.delete(req.params.id)
   .then(result => {
     res.json(result)
@@ -48,8 +48,8 @@ router.route("/delete/:id").delete((req, res) => {
 })
 
 router.route("/addItem").post((req, res) => {
-  console.log("in system router")
-  console.log(req.body)
+  // console.log("in system router")
+  // console.log(req.body)
   addItem.newItem(req.body)
   .then(result => {
     res.json(result)
@@ -58,7 +58,7 @@ router.route("/addItem").post((req, res) => {
 })
 
 router.route("/setstore").put((req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   updateStore.setStore(req.body)
   .then(result => {
     res.json(result)

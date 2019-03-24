@@ -7,10 +7,10 @@ import API from '../utils/API'
 
 //   Adds an item to the shopping collection
 function* addItemAsync(data) {
-    console.log(data)
+    // console.log(data)
     const myData = yield API.addItem(data.val)
 //    console.log(myData)
-    yield put({type: 'SET_STORELIST_COUNT', val: myData.data});
+    yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
 }
 
 export function* watchAddItem() {
@@ -46,7 +46,7 @@ export function* watchStrikeThru() {
 // delete item
 
 function* deleteItemAsync(data) {
-    console.log(data.val)
+    // console.log(data.val)
     const myData = yield API.deleteItem(data.val)
     yield put({type: 'SET_STORELIST_COUNT', val: myData.data});
 }

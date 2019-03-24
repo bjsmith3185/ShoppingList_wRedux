@@ -13,9 +13,11 @@ module.exports = {
                 count.count(dbresults)
                 .then(countResult => {
 
+                    // added myStore value here
                     let data = {
                         countRemaining: countResult,
-                        storeList: dbresults
+                        storeList: dbresults,
+                        myStore: storeName
                     }
                     resolve(data)
                 })

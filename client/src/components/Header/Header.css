@@ -13,9 +13,16 @@
 
 }
 
+.header-name-area {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Kalam', cursive;
+}
+
 .home-addbar {
   width: 100%;
   border-bottom: 1px solid gray;
+  
 }
 
 .addbar-remaining {

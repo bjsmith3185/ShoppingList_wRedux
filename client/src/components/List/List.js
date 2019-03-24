@@ -10,11 +10,12 @@ class List extends Component {
   };
 
   delete = item_id => {
-    console.log("deleting");
+    // console.log("deleting");
      this.props.removeItem(item_id);
   };
 
   strike = (id, strikeThru) => {
+    // console.log("strike thru")
     if (strikeThru) {
       strikeThru = false;
     } else {
@@ -31,23 +32,32 @@ class List extends Component {
           <div className="list-store-title text-center">
           {this.props.myStore}
           </div>
+          <div className="list-qty-remaining text-right">
+          Items Remaining {this.props.countRemaining}
+          </div>
         </div>
 
         {this.props.storeList && (
           <div className="item-list-container">
+
             {this.props.storeList.map((item, i) => (
-              <div
-                className="item"
-                // onClick={() => this.strike(item._id, item.strikeThru)}
+              <div className="item"
                 key={i}
               >
+
                 {item.strikeThru ? (
-                  <div className="item-container text-left strike">
+                  <div 
+                    className="item-container text-left strike"
+                    onClick={() => this.strike(item._id, item.strikeThru)}
+                    >
                     <span className="item-name">{item.item}</span>
                     <span className="item-qty">{item.qty}</span>
                   </div>
                 ) : (
-                  <div className="item-container text-left">
+                  <div 
+                    className="item-container text-left"
+                    onClick={() => this.strike(item._id, item.strikeThru)}
+                    >
                     <span className="item-name">{item.item}</span>
                     <span className="item-qty">&#40; {item.qty} &#41;</span>
                   </div>
@@ -61,9 +71,9 @@ class List extends Component {
                     X
                   </div>
                 </div>
-              </div>
+              </div> // end of item
             ))}
-          </div>
+          </div> // end of item-list-container 
         )}
       </div>
     );

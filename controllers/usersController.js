@@ -2,8 +2,8 @@ const db = require("../models");
 
 module.exports = {
   create: function(data) {
-    console.log("is this here?????");
-    console.log(data);
+    // console.log("is this here?????");
+    // console.log(data);
     return db.Users.create(data);
   },
 
