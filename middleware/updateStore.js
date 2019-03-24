@@ -5,11 +5,11 @@ const storeList = require('./storeList')
 // takes in storeName and user_id
 module.exports = {
 
-    setStore: function(storeName, user_id) {
+    setStore: function(user_id, storeName) {
         return new Promise((resolve, reject) => {
         //    console.log("???")
         //    console.log(storeName)
-            users.update(storeName)
+            users.update(user_id, storeName)
             .then(dbresult => {
                 // console.log(dbresult)
 

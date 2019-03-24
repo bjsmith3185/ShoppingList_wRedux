@@ -18,7 +18,10 @@ const Menu = props => (
           )}
 
           <div className="menu-link edit-link">Edit List</div>
-          <div className="menu-link signout-link">Signout</div>
+          <div 
+            className="menu-link signout-link"
+            // onClick={props.signOutUser}
+            >Signout</div>
       </div>
 
 )

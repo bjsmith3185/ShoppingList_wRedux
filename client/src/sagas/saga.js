@@ -1,6 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
-
-import API from '../utils/API'
+// import * as ROUTES from "../constants/routes";
+import API from '../utils/API';
+// import { withRouter, history } from 'react-router-dom';
 
 
 
@@ -58,18 +59,47 @@ export function* watchDeleteItem() {
 //-------------------------------------------------------------------
 //  select store
 function* setStoreAsync(data) {
-    const myData = yield API.selectStore(data.val)
+    console.log(data)
+    const myData = yield API.selectStore(data.val.userId, {myStore: data.val.myStore})
     yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
 }
 
 export function* watchSetStore() {
     yield takeLatest('SET_STORE', setStoreAsync)
 }
+//-------------------------------------------------------------------
+
+//   Log in user
+function* logInAsync(data) {
+    // console.log(data)
+    const myData = yield API.logIn(data.val)
+//     console.log('back in the saga')
+//    console.log(myData)
+
+    yield put({type: 'SET_ALL_DATA', val: myData.data});
+}
+
+export function* watchLogIn() {
+    yield takeLatest('LOG_IN', logInAsync)
+}
+
+//--------------------------------------------------------
 
 
+//   Log out user
+function* signOutAsync(data) {
 
+    // No need to go to the server for this one now
+    // maybe with a later version
 
+    yield put({type: 'SIGN_OUT', val: data});
+}
 
+export function* watchSignOut() {
+    yield takeLatest('SIGN_OUT', signOutAsync)
+}
+
+//--------------------------------------------------------
 
 
 

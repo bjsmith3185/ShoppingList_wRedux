@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { browserHistory } from 'react-router';
 import "./Home.css";
 
 
@@ -8,9 +9,9 @@ import List from "../../components/List";
 import Header from "../../components/Header";
 
 class HomePage extends Component {
-  // componentDidMount() {
-  componentWillMount() {
-    this.props.loadAllData();
+  componentDidMount() {
+  // componentWillMount() {
+    //  this.props.loadAllData(this.props.userId);
   }
 
 
@@ -32,15 +33,16 @@ const mapStateToProps = state => {
   // console.log("state coming into home.js");
   // console.log(state);
   return {
-   
+   userId: state.userId
   };
 };
 
 const mapDispachToProps = dispach => {
   return {
-    loadAllData: () => {
-      dispach({ type: "LOAD_DATA", val: '5c8e73b6add5286e74485f43' });
-    }
+    // loadAllData: (data) => {
+    //   // dispach({ type: "LOAD_DATA", val: '5c8e73b6add5286e74485f43' });
+    //   dispach({ type: "LOAD_DATA", val: data });
+    // }
   };
 };
 

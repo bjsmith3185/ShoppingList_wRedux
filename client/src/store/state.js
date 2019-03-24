@@ -6,6 +6,8 @@ const initState = {
     myStore: '',
     storeList: [],
     storeNames: [],
+    password: '',
+    userId: '',
 }
 
 // const initState = {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as ROUTES from "../../constants/routes";
 // Redux
 import { connect } from "react-redux";
 import Form from "../Form";
@@ -65,12 +66,12 @@ class Header extends Component {
     }
   };
 
-
-  // may use this function to create a
-  // unique store list of items
   selectStore = store => {
     // console.log(store);
+    console.log("selecting store")
+    console.log(this.props.userId)
     const myStore = {
+      userId: this.props.userId,
      myStore: store
     };
     this.props.setStore(myStore);
@@ -103,14 +104,11 @@ class Header extends Component {
     }
   };
 
-  // storeNames = () => {
-  //   let names = [];
-  //   names = this.props.list.map(item => item.store);
-  //   let uniqueNames = [...new Set(names)];
-  //   this.setState({
-  //     stores: uniqueNames
-  //   });
-  // };
+  signOutUser = () => {
+    console.log("Good Bye")
+    this.props.signOut()
+    this.props.history.push(ROUTES.LANDING)
+  }
 
   render() {
     return (
@@ -136,6 +134,7 @@ class Header extends Component {
             showStores={this.state.showStores}
             stores={this.props.storeNames}
             selectStore={this.selectStore}
+            signOutUser={this.signOutUser}
           />
         )}
 
@@ -155,15 +154,16 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state coming into Header.js");
-  // console.log(state);
+  console.log("state coming into Header.js");
+  console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,
     allList: state.allList,
     storeList: state.storeList,
     storeNames: state.storeNames,
-    myStore: state.myStore
+    myStore: state.myStore,
+    userId: state.userId
   };
 };
 
@@ -182,6 +182,12 @@ const mapDispachToProps = dispach => {
         type: 'SET_STORE',
         val: data
       });
+    },
+
+    signOut: () => {
+      dispach({
+        type: 'SIGN_OUT'
+      })
     }
   };
 };

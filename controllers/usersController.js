@@ -7,19 +7,21 @@ module.exports = {
     return db.Users.create(data);
   },
 
-  update: function(data, user_id) {
+  update: function(id, data) {
     // console.log("look here")
     // console.log(data)
     return db.Users.findOneAndUpdate(
-      { _id: "5c8e73b6add5286e74485f43" },
+      { _id: id },
       data,
       { new: true }
     );
   },
 
-  findById: function() {
-    return db.Users.findById({ _id: "5c8e73b6add5286e74485f43" });
+  findById: function(id) {
+    return db.Users.findById({ _id: id });
   },
+
+ 
 
 
 

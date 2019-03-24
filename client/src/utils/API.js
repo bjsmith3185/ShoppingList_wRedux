@@ -16,7 +16,7 @@ export default {
   //============ system
 
   loadData: function(user_id) {
-    // console.log(user_id)
+    console.log(user_id)
     return axios.get('/api/system/load/'+ user_id)
   },
 
@@ -30,8 +30,8 @@ export default {
     return axios.delete('/api/system/delete/'+id)
   },
 
-  selectStore: function(data) {
-    return axios.put('/api/system/setstore', data)
+  selectStore: function(user_id, data) {
+    return axios.put('/api/system/setstore/'+user_id , data)
   },
 
   addItem: function(data) {
@@ -39,7 +39,12 @@ export default {
     return axios.post('/api/system/addItem/', data)
   },
 
+  logIn: function (data) {
+    console.log(data)
+    return axios.put('/api/system/login', data)
+  },
 
+  
 
 
 
@@ -76,14 +81,18 @@ export default {
 
   //==================== User
 
-  updateUserData: function (data) {
-    console.log("user update api")
-    console.log(data)
-    return axios.put('./api/users', data)
-  }
+  signOut: function (id) {
+    return axios.put('/api/users/signout/' + id)
+  },
 
 
+  // updateUserData: function (data) {
+  //   console.log("user update api")
+  //   console.log(data)
+  //   return axios.put('/api/users', data)
+  // },
 
+  
 
 };
 

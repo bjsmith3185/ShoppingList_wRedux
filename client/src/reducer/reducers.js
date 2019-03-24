@@ -10,12 +10,13 @@ const setData = (state = initialState, action) => {
     
     return {
       ...state,
-      myStore: action.val.store,
+      myStore: action.val.myStore,
       countRemaining: action.val.countRemaining,
       allList: action.val.allList,
       storeList: action.val.storeList,
       storeNames: action.val.storeNames,
-      name: action.val.name
+      name: action.val.name,
+      userId: action.val.userId,
     };
   }
 
@@ -44,6 +45,42 @@ const setData = (state = initialState, action) => {
       myStore: action.val.myStore,
       storeList: action.val.storeList,
       // storeNames: action.val.storeNames,
+    };
+  }
+
+   // reducer for setting user info or errors
+   if (action.type === "SET_USER") {
+    // console.log("reducer, set user");
+    // console.log(action.val);
+    let myStore = action.val.myStore;
+    if(action.val.myStore === undefined) {
+      // console.log("no my store")
+      myStore = '';
+    }
+    
+    return {
+      ...state,
+      name: action.val.name,
+      myStore: myStore,
+      userId: action.val._id,
+      password: action.val.password
+    };
+  }
+
+  // reducer for signing out user
+  if (action.type === "SIGN_OUT") {
+    console.log("reducer, set signout");
+          
+    return {
+      ...state,
+      name: '',
+      myStore: '',
+      userId: '',
+      password: '',
+      countRemaining: '',
+      allList: '',
+      storeList: '',
+      storeNames: '',
     };
   }
 
