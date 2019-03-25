@@ -27,7 +27,7 @@ class HomePage extends Component {
           // sessionStorage.setItem("is_reloaded", true);
 
       const user_id = localStorage.getItem("userId");
-      console.log(user_id)
+      // console.log(user_id)
       this.loadAllData(user_id)
 
   }
@@ -50,8 +50,8 @@ class HomePage extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  console.log("state coming into home.js");
-  console.log(state);
+  // console.log("state coming into home.js");
+  // console.log(state);
   return {
    userId: state.userId
   };
