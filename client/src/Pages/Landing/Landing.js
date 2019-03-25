@@ -42,6 +42,10 @@ class LandingPage extends Component {
     // console.log("page redirect ()")
     // console.log(this.props.userId)
     if(this.props.userId) {
+
+      // set user_id to local storage
+      localStorage.setItem("userId", this.props.userId)
+
       this.props.history.push(ROUTES.HOME)
     }
     if(this.props.password) {
