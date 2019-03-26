@@ -10,8 +10,8 @@ import List from "../../components/List";
 import Header from "../../components/Header";
 
 class HomePage extends Component {
-  componentDidMount() {
-  // componentWillMount() {
+  // componentDidMount() {
+  componentWillMount() {
       const user_id = localStorage.getItem("userId");
       this.loadAllData(user_id)
   }
@@ -21,12 +21,29 @@ class HomePage extends Component {
   }
 
   render() {
-    // console.log(this.props);
+    // console.log("rendering")
+    // console.log(this.props.allList);
+
+    // const listArea =  () => {
+    //   if( this.props.allList.length === 0 ) {
+    //     return (
+    //       <div className="home-no-list text-center">
+    //       There are no items to display
+    //     </div>
+    //     )
+    //   } else {
+    //     return (
+    //       <List />
+    //     )
+    //   }
+    // }
 
     return (
       <div className="App ">
         <Header />
+
         <List />
+        
       </div>
     );
   }
@@ -37,7 +54,8 @@ const mapStateToProps = state => {
   // console.log("state coming into home.js");
   // console.log(state);
   return {
-   userId: state.userId
+   userId: state.userId,
+   allList: state.allList
   };
 };
 

@@ -149,6 +149,7 @@ class Header extends Component {
             stores={this.props.storeNames}
             selectStore={this.selectStore}
             signOutUser={this.signOutUser}
+            showDropDown={this.showDropdown}
           />
         )}
 

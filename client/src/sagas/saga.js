@@ -47,8 +47,8 @@ export function* watchStrikeThru() {
 // delete item
 
 function* deleteItemAsync(data) {
-    console.log("*****")
-    console.log(data.val)
+    // console.log("*****")
+    // console.log(data.val)
     const myData = yield API.deleteItem(data.val.item, data.val.user)
     yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
 }
@@ -60,7 +60,7 @@ export function* watchDeleteItem() {
 //-------------------------------------------------------------------
 //  select store
 function* setStoreAsync(data) {
-    console.log(data)
+    // console.log(data)
     const myData = yield API.selectStore(data.val.userId, {myStore: data.val.myStore})
     yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
 }

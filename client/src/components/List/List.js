@@ -10,8 +10,8 @@ class List extends Component {
   };
 
   delete = item_id => {
-    console.log("deleting");
-    console.log(localStorage.getItem("userId"))
+    // console.log("deleting");
+    // console.log(localStorage.getItem("userId"))
     let deleteData = {
       item: item_id,
       user: localStorage.getItem("userId")
