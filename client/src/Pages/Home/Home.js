@@ -12,24 +12,8 @@ import Header from "../../components/Header";
 class HomePage extends Component {
   componentDidMount() {
   // componentWillMount() {
-    //  this.props.loadAllData(this.props.userId);
-
-    // Need a function to save user_id to local storeage
-
-    // use sessionStoreage to determine if the page is reloaded
-    // save the user_id to local storage
-
-    // If the page is reloaded
-          //  use the user_id from local storage
-
-          // if (sessionStorage.getItem("is_reloaded")) alert('Reloaded!');
-
-          // sessionStorage.setItem("is_reloaded", true);
-
       const user_id = localStorage.getItem("userId");
-      // console.log(user_id)
       this.loadAllData(user_id)
-
   }
 
   loadAllData = (id) => {

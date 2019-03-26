@@ -33,8 +33,8 @@ const setData = (state = initialState, action) => {
 
   // reducer for setting storelist, count, store
   if (action.type === "SET_STORELIST_COUNT_STORE") {
-    // console.log("reducer, all data");
-    // console.log(action.val);
+    console.log("reducer, all data");
+    console.log(action.val);
 
 
     return {
@@ -64,6 +64,17 @@ const setData = (state = initialState, action) => {
       myStore: myStore,
       userId: action.val._id,
       password: action.val.password
+    };
+  }
+
+  // reducer for setting user id on signin
+  if (action.type === "SET_USERID") {
+    // console.log("reducer, set userID");
+    // console.log(action.val);
+       
+    return {
+      ...state,
+      userId: action.val,
     };
   }
 

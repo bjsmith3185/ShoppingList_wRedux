@@ -47,9 +47,10 @@ export function* watchStrikeThru() {
 // delete item
 
 function* deleteItemAsync(data) {
-    // console.log(data.val)
-    const myData = yield API.deleteItem(data.val)
-    yield put({type: 'SET_STORELIST_COUNT', val: myData.data});
+    console.log("*****")
+    console.log(data.val)
+    const myData = yield API.deleteItem(data.val.item, data.val.user)
+    yield put({type: 'SET_STORELIST_COUNT_STORE', val: myData.data});
 }
 
 export function* watchDeleteItem() {
@@ -76,7 +77,7 @@ function* logInAsync(data) {
 //     console.log('back in the saga')
 //    console.log(myData)
 
-    yield put({type: 'SET_ALL_DATA', val: myData.data});
+    yield put({type: 'SET_USERID', val: myData.data});
 }
 
 export function* watchLogIn() {
@@ -101,7 +102,19 @@ export function* watchSignOut() {
 
 //--------------------------------------------------------
 
+// //   Log in user backup
+// function* logInAsync(data) {
+//     // console.log(data)
+//     const myData = yield API.logIn(data.val)
+// //     console.log('back in the saga')
+// //    console.log(myData)
 
+//     yield put({type: 'SET_ALL_DATA', val: myData.data});
+// }
+
+// export function* watchLogIn() {
+//     yield takeLatest('LOG_IN', logInAsync)
+// }
 
 
 

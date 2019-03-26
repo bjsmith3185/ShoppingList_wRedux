@@ -25,9 +25,10 @@ export default {
     return axios.put('/api/system/strike/'+ shopping_id, data)
   },
 
-  deleteItem: function(id) {
-    // console.log(id)
-    return axios.delete('/api/system/delete/'+id)
+  deleteItem: function(item, user) {
+    console.log(item)
+    console.log(user)
+    return axios.delete('/api/system/delete/'+item + "/" + user)
   },
 
   selectStore: function(user_id, data) {
