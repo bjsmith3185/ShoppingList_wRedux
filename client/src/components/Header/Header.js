@@ -82,7 +82,8 @@ class Header extends Component {
     this.props.setStore(myStore);
     this.setState({
       showStores: false,
-      showDropDownMenu: false
+      showDropDownMenu: false,
+      
     });
   };
 
@@ -95,10 +96,10 @@ class Header extends Component {
     }
   };
 
-  openStores = () => {
-    // console.log("clicked open stores");
-    // this.storeNames();
-    if (this.state.showStores) {
+  openStores = (store) => {
+    console.log("clicked open stores");
+    console.log(store)
+    if (store) {
       this.setState({
         showStores: false
       });
@@ -107,6 +108,17 @@ class Header extends Component {
         showStores: true
       });
     }
+
+    // this.storeNames();
+    // if (this.state.showStores) {
+    //   this.setState({
+    //     showStores: false
+    //   });
+    // } else {
+    //   this.setState({
+    //     showStores: true
+    //   });
+    // }
   };
 
   signOutUser = () => {

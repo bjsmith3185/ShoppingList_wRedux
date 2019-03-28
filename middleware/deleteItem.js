@@ -39,7 +39,7 @@ module.exports = {
                       .nameList(allResults)
                       .then(allStores => {
                         console.log("new all stores array");
-                        console.log(allStores);
+                        console.log(allStores); // works here
 
                         setMyStore
                           .checkMyStore(allStores, user_id)
@@ -48,8 +48,10 @@ module.exports = {
                             list
                               .storeList(setStore.myStore)
                               .then(results => {
-                                console.log("this is the return data");
+                                console.log("this is the return data!!!!!!!!!!!!");
+                                results.storeNames = allStores
                                 console.log(results);
+
                                 return resolve(results);
                               })
                               .catch(err => console.log(err));

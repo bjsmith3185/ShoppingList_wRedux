@@ -3,7 +3,7 @@ import "./Menu.css";
 
 const Menu = props => (
   <div className="menu-area">
-    <div onClick={props.openStores} className="menu-link stores-link">
+    <div onClick={() => props.openStores(props.showStores)} className="menu-link stores-link">
        - Stores
     </div>
     {props.showStores && (

@@ -69,6 +69,8 @@ function* setStoreAsync(data) {
   const myData = yield API.selectStore(data.val.userId, {
     myStore: data.val.myStore
   });
+  console.log("&&&&&&&&&&&&&&&&&")
+  console.log(myData)
   yield put({ type: "SET_STORELIST_COUNT_STORE", val: myData.data });
 }
 
