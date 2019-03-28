@@ -15,11 +15,11 @@ class Header extends Component {
     stores: [],
     item: "",
     store: "",
-    qty: "",
+    qty: ""
   };
 
   componentDidMount() {
-    console.log(this.props)
+    console.log(this.props);
   }
 
   onChange = event => {
@@ -30,9 +30,9 @@ class Header extends Component {
     event.preventDefault();
     // console.log("button was clicked");
     let data = {
-        item: this.state.item,
-        store: this.state.store,
-        qty: this.state.qty
+      item: this.state.item,
+      store: this.state.store,
+      qty: this.state.qty
     };
     let user = this.props.userId;
 
@@ -48,13 +48,12 @@ class Header extends Component {
   showDropdown = () => {
     if (this.state.showDropDownMenu) {
       this.setState({
-        showDropDownMenu: false,
-        
+        showDropDownMenu: false
       });
     } else {
       this.setState({
         showDropDownMenu: true,
-        showInputForm: false,
+        showInputForm: false
       });
     }
   };
@@ -67,7 +66,7 @@ class Header extends Component {
     } else {
       this.setState({
         showInputForm: true,
-        showDropDownMenu: false,
+        showDropDownMenu: false
       });
     }
   };
@@ -78,7 +77,7 @@ class Header extends Component {
     // console.log(this.props.userId)
     const myStore = {
       userId: this.props.userId,
-     myStore: store
+      myStore: store
     };
     this.props.setStore(myStore);
     this.setState({
@@ -111,46 +110,47 @@ class Header extends Component {
   };
 
   signOutUser = () => {
-    console.log("Good Bye")
+    console.log("Good Bye");
     // const { history } = this.props;
     // console.log(history)
     // let userId = {
     //   _id: this.props.userId
     // }
-    console.log(this.props.history)
+    console.log(this.props.history);
 
-    this.props.signOut(this.props.userId, this.props.history)
+    this.props.signOut(this.props.userId, this.props.history);
     // this.props.history.push('/')
-
-  }
+  };
 
   render() {
-    console.log("in render")
-    console.log(this.props)
+    console.log("in render");
+    console.log(this.props);
     return (
       <div className="header-area">
-
         <div className="top-area">
-
           <div className="left-box text-center" onClick={this.showDropdown}>
-          <i className="fas fa-bars" />
-          </div>
-        
-          <div className="center-box text-center">
-          <div className="top-title text-center">Hey Don't Forget</div>
-          </div>
-        
-          <div className="right-box text-center" onClick={this.openInputForm}>
-          <i className="fas fa-plus" />
+            <i className="fas fa-bars" />
           </div>
 
+          <div className="center-box text-center">
+            <div className="top-title text-center">Hey Don't Forget</div>
+          </div>
+
+          <div className="right-box text-center" onClick={this.openInputForm}>
+            <i className="fas fa-plus" />
+          </div>
         </div>
-     
 
         {/* Title on small screen  */}
         <div className="text-center bottom-title">Hey Don't Forget</div>
 
-        <div className="header-name-area text-center">{this.props.name}</div>
+        <div className="header-name-area text-center">
+          {this.props.name
+            .toLowerCase()
+            .split(" ")
+            .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(" ")}
+        </div>
 
         {/* dropdown menu goes here  */}
 
@@ -191,7 +191,7 @@ const mapStateToProps = state => {
     storeNames: state.storeNames,
     myStore: state.myStore,
     userId: state.userId,
-    history: state.history,
+    history: state.history
   };
 };
 
@@ -200,24 +200,25 @@ const mapDispachToProps = dispach => {
   return {
     addItem: (user, data) => {
       dispach({
-        type: 'ADD_ITEM',
-        val: {user: user, data: data}
+        type: "ADD_ITEM",
+        val: { user: user, data: data }
       });
     },
 
     setStore: data => {
       dispach({
-        type: 'SET_STORE',
+        type: "SET_STORE",
         val: data
       });
     },
 
     signOut: (userId, history) => {
-      console.log(userId)
-      console.log(history)
+      console.log(userId);
+      console.log(history);
       dispach({
-        type: 'SIGN_OUT', payload: { userId, history }
-      })
+        type: "SIGN_OUT",
+        payload: { userId, history }
+      });
     }
   };
 };
@@ -226,4 +227,3 @@ export default connect(
   mapStateToProps,
   mapDispachToProps
 )(Header);
-

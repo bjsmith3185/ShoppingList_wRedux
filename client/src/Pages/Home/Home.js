@@ -19,13 +19,18 @@ class HomePage extends Component {
 
 
   render() {
- 
+    console.log("render in Home")
+ console.log(this.props)
     return (
       <div className="App ">
         <Header />
 
-        <List />
-        
+        {/* <List /> */}
+
+        {!this.props.myStore ? (
+          <div className="text-center home-no-list">No items on your list</div>
+        ) : ( <List /> )}
+
       </div>
     );
   }
@@ -37,7 +42,8 @@ const mapStateToProps = state => {
   // console.log(state);
   return {
    userId: state.userId,
-   allList: state.allList
+   allList: state.allList,
+   myStore: state.myStore,
   };
 };
 
