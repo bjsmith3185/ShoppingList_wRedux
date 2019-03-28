@@ -4,7 +4,7 @@ import "./Menu.css";
 const Menu = props => (
   <div className="menu-area">
     <div onClick={props.openStores} className="menu-link stores-link">
-      Stores
+       - Stores
     </div>
     {props.showStores && (
       <div className="stores-dropdown">
@@ -23,12 +23,12 @@ const Menu = props => (
       </div>
     )}
 
-    <div className="menu-link edit-link">Edit List (coming soon)</div>
+    <div className="menu-link edit-link">- Edit List (coming soon)</div>
     <div
       className="menu-link signout-link"
-      // onClick={props.signOutUser}
+      onClick={props.signOutUser}
     >
-      Signout (coming soon)
+      - Signout
     </div>
 
     <div

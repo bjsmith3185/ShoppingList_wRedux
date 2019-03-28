@@ -12,32 +12,14 @@ import Header from "../../components/Header";
 class HomePage extends Component {
   // componentDidMount() {
   componentWillMount() {
+    const { history } = this.props;
       const user_id = localStorage.getItem("userId");
-      this.loadAllData(user_id)
+      this.props.loadAllData(user_id, history)
   }
 
-  loadAllData = (id) => {
-   this.props.loadAllData(id)
-  }
 
   render() {
-    // console.log("rendering")
-    // console.log(this.props.allList);
-
-    // const listArea =  () => {
-    //   if( this.props.allList.length === 0 ) {
-    //     return (
-    //       <div className="home-no-list text-center">
-    //       There are no items to display
-    //     </div>
-    //     )
-    //   } else {
-    //     return (
-    //       <List />
-    //     )
-    //   }
-    // }
-
+ 
     return (
       <div className="App ">
         <Header />
@@ -61,9 +43,14 @@ const mapStateToProps = state => {
 
 const mapDispachToProps = dispach => {
   return {
-    loadAllData: (data) => {
+    loadAllData: (id, history) => {
       // dispach({ type: "LOAD_DATA", val: '5c8e73b6add5286e74485f43' });
-      dispach({ type: "LOAD_DATA", val: data });
+      // dispach({ type: "LOAD_DATA", val: data });
+      dispach({ type: "LOAD_DATA", payload: { id, history }});
+    },
+
+    setHistory: (history) => {
+      dispach({ type: "SET_HISTORY", payload: { history } })
     }
   };
 };

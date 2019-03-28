@@ -17,6 +17,8 @@ const setData = (state = initialState, action) => {
       storeNames: action.val.storeNames,
       name: action.val.name,
       userId: action.val.userId,
+      history: action.val.history,
+      signedIn: action.val.signedIn,
     };
   }
 
@@ -79,9 +81,29 @@ const setData = (state = initialState, action) => {
   }
 
   // reducer for signing out user
-  if (action.type === "SIGN_OUT") {
+  if (action.type === "SIGN_OUT_ASYNC") {
     console.log("reducer, set signout");
+ 
           
+    return {
+      ...state,
+      name: '',
+      myStore: '',
+      userId: '',
+      password: '',
+      countRemaining: '',
+      allList: [],
+      storeList: [],
+      storeNames: [],
+      history: {},
+      signedIn: false,
+    };
+  }
+
+    //reducer for setting history to state
+  if (action.type === "SET_HISTORY_ASYNC") {
+    // console.log("reducer, set history");
+    // console.log(action.val)
     return {
       ...state,
       name: '',
@@ -92,6 +114,7 @@ const setData = (state = initialState, action) => {
       allList: '',
       storeList: '',
       storeNames: '',
+      history: action.val
     };
   }
 

@@ -8,6 +8,8 @@ const initState = {
     storeNames: [],
     password: '',
     userId: '',
+    history: {},
+    signedIn: false,
 }
 
 // const initState = {

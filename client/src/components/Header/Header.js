@@ -18,7 +18,9 @@ class Header extends Component {
     qty: "",
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props)
+  }
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -110,11 +112,21 @@ class Header extends Component {
 
   signOutUser = () => {
     console.log("Good Bye")
-    this.props.signOut()
-    this.props.history.push(ROUTES.LANDING)
+    // const { history } = this.props;
+    // console.log(history)
+    // let userId = {
+    //   _id: this.props.userId
+    // }
+    console.log(this.props.history)
+
+    this.props.signOut(this.props.userId, this.props.history)
+    // this.props.history.push('/')
+
   }
 
   render() {
+    console.log("in render")
+    console.log(this.props)
     return (
       <div className="header-area">
 
@@ -178,7 +190,8 @@ const mapStateToProps = state => {
     storeList: state.storeList,
     storeNames: state.storeNames,
     myStore: state.myStore,
-    userId: state.userId
+    userId: state.userId,
+    history: state.history,
   };
 };
 
@@ -199,9 +212,11 @@ const mapDispachToProps = dispach => {
       });
     },
 
-    signOut: () => {
+    signOut: (userId, history) => {
+      console.log(userId)
+      console.log(history)
       dispach({
-        type: 'SIGN_OUT'
+        type: 'SIGN_OUT', payload: { userId, history }
       })
     }
   };

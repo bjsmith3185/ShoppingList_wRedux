@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-import * as ROUTES from "../../constants/routes";
 import "./Landing.css";
 
 // Redux
@@ -13,45 +11,10 @@ class LandingPage extends Component {
   state = {
     name: '',
     myPassword: '',
-
-
   }
-// componentWillReceiveProps() {
-//   console.log("component will get props")
-//     console.log(this.props)
-//     // if (this.props.userId) {
-//     //   this.props.history.push(ROUTES.HOME)
-//     // }
-// }
-  // componentWillUpdate() {
-  //   console.log("component will update")
-  //   console.log(this.props)
-  //   // if (this.props.userId) {
-  //   //   this.props.history.push(ROUTES.HOME)
-  //   // }
-  // }
-  
 
-  // componentWillReceiveProps () {
-  //   if (this.props.userId) {
-  //     this.props.history.push(ROUTES.HOME)
-  //   }
-  // }
-
-  pageRedirect = () => {
-    // console.log("page redirect ()")
-    // console.log(this.props.userId)
-    if(this.props.userId) {
-
-      // set user_id to local storage
-      localStorage.setItem("userId", this.props.userId)
-
-      this.props.history.push(ROUTES.HOME)
-    }
-    if(this.props.password) {
-      // console.log(this.props.password)
-    }
-
+  componentDidMount() {
+    // console.log(this.props)
   }
 
 onChange = event => {
@@ -60,14 +23,10 @@ onChange = event => {
 
   submit = (event) => {
     event.preventDefault();
-    
+    const { history } = this.props;
+    // console.log(history)
+    this.props.submitLogin(this.state.name.toLowerCase(), this.state.myPassword.toString().toLowerCase(), history)
 
-    let info = {
-      name: this.state.name.toLowerCase(),
-      password: this.state.myPassword.toString().toLowerCase()
-    }
-    this.props.submitLogin(info)
-    setTimeout(this.pageRedirect, 1000)
     this.setState({
       name: '',
       myPassword: ''
@@ -137,21 +96,15 @@ const mapStateToProps = state => {
   // console.log("state coming into Landing.js");
   // console.log(state);
   return {
-    // name: state.name,
-    // allList: state.allList,
-    // countRemaining: state.countRemaining,
-    // myStore: state.myStore,
-    // storeList: state.storeList,
-    // storeNames: state.storeNames,
-    // password: state.password,
+
     userId: state.userId,
   };
 };
 
 const mapDispachToProps = dispach => {
   return {
-    submitLogin: (data) => {
-      dispach({ type: "LOG_IN", val: data});
+    submitLogin: (name, password, history) => {
+      dispach({ type: "LOG_IN", payload: { name, password, history } } );
     }
   };
 };
