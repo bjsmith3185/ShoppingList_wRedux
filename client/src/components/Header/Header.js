@@ -13,8 +13,7 @@ class Header extends Component {
     stores: [],
     item: "",
     store: "",
-    qty: "",
-
+    qty: ""
   };
 
   componentDidMount() {
@@ -103,12 +102,11 @@ class Header extends Component {
   };
 
   editList = () => {
-    console.log("clicked edit store")
     this.setState({
-      showDropDownMenu: false,
-     })
-     let data = true;
-     this.props.edit(data) 
+      showDropDownMenu: false
+    });
+    let data = true;
+    this.props.edit(data);
   };
 
   signOutUser = () => {
@@ -173,8 +171,6 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state coming into header")
-  // console.log(state)
   return {
     name: state.name,
     countRemaining: state.countRemaining,
@@ -184,13 +180,12 @@ const mapStateToProps = state => {
     myStore: state.myStore,
     userId: state.userId,
     history: state.history,
-    editing: state.editing,
+    editing: state.editing
   };
 };
 
 // functions to dispatch actions
 const mapDispachToProps = dispach => {
-  
   return {
     addItem: (user, data) => {
       dispach({
@@ -212,11 +207,11 @@ const mapDispachToProps = dispach => {
         payload: { userId, history }
       });
     },
-    edit: (editing) => {
+    edit: editing => {
       dispach({
         type: "EDIT",
         payload: { editing }
-     })
+      });
     }
   };
 };

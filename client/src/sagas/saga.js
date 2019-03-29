@@ -120,12 +120,9 @@ export function* watchSetHistory() {
 
 // updating store with value to show update window
 function* editAsync(data) {
-  // console.log("editAsync")
-  // console.log(data)
   // // dont need to go to the server here
   // just update the store with a value 
   // to show edit fields
-
  yield put({ type: "EDIT_ASYNC", val: data.payload } );
 }
 
@@ -136,11 +133,7 @@ export function* watchEdit() {
 
 //  update/edit list
 function* updateListAsync(data) {
-  // console.log("updateListtAsync")
-  // console.log(data)
   const updated = yield API.updateShoppingList(data.val.id, data.val.payload)
-// console.log("updateListtAsync")
-//   console.log(updated);
  yield put({ type: "SET_STORELIST_COUNT_STORE", val: updated.data } );
 }
 
@@ -151,12 +144,9 @@ export function* watchUpdateList() {
 
 // canceling the edit window
 function* cancelUpdateAsync(data) {
-  // console.log("editAsync")
-  // console.log(data)
   // // dont need to go to the server here
   // just update the store with a value 
   // to show edit fields
-
  yield put({ type: "EDIT_ASYNC", val: data.payload } );
 }
 

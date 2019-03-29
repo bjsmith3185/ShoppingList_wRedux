@@ -39,7 +39,6 @@ class List extends Component {
   };
 
   edit = id => {
-    console.log("edit" + id);
     for (var i = 0; i < this.props.storeList.length; i++) {
       if (this.props.storeList[i]._id === id) {
         this.setState({
@@ -79,7 +78,6 @@ class List extends Component {
       item: item,
       qty: qty,
       store: store
-      // _id: this.state.selected_id,
     };
 
     let userInfo = {
@@ -89,7 +87,6 @@ class List extends Component {
 
     this.props.updateList(this.state.selected_id, updated, userInfo);
     this.cancelEdit();
-    // console.log(data)
     this.setState({
       item: "",
       qty: "",
@@ -100,10 +97,10 @@ class List extends Component {
 
   cancelEdit = () => {
     this.setState({
-      showEditWindow: false,
-    })
+      showEditWindow: false
+    });
     let data = false;
-    this.props.cancelUpdate(data)
+    this.props.cancelUpdate(data);
   };
 
   render() {
@@ -242,8 +239,6 @@ class List extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  console.log("state coming into List");
-  console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,
@@ -273,11 +268,11 @@ const mapDispachToProps = dispach => {
       });
     },
 
-    cancelUpdate: (editing) => {
+    cancelUpdate: editing => {
       dispach({
         type: "CANCEL_UPDATE",
         payload: { editing }
-      })
+      });
     }
   };
 };

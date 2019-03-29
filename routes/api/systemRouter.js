@@ -64,8 +64,6 @@ router.route("/login").put((req, res) => {
 });
 
 router.route("/updatelist/:id").put((req, res) => {
-  // console.log(req.params.id)
-  // console.log(req.body)
   updateList.edit(req.params.id, req.body)
     .then(result => {
       res.json(result);
