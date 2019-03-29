@@ -1,56 +1,46 @@
 import React, { Component } from "react";
 import "./Landing.css";
-
 // Redux
 import { connect } from "react-redux";
 
-
-
 class LandingPage extends Component {
-
   state = {
-    name: '',
-    myPassword: '',
-  }
+    name: "",
+    myPassword: ""
+  };
 
-  componentDidMount() {
-    // console.log(this.props)
-  }
-
-onChange = event => {
+  onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  submit = (event) => {
+  submit = event => {
     event.preventDefault();
     const { history } = this.props;
-    // console.log(history)
-    this.props.submitLogin(this.state.name.toLowerCase(), this.state.myPassword.toString().toLowerCase(), history)
+    this.props.submitLogin(
+      this.state.name.toLowerCase(),
+      this.state.myPassword.toString().toLowerCase(),
+      history
+    );
 
     this.setState({
-      name: '',
-      myPassword: ''
-    })
+      name: "",
+      myPassword: ""
+    });
   };
 
   demo = () => {
     this.setState({
-      name: 'brian smith',
-      myPassword: '1234'
-    })
-  }
+      name: "brian smith",
+      myPassword: "1234"
+    });
+  };
 
   render = () => {
-    // console.log("__________________")
-    // console.log(this.props)
     return (
       <div className="landing-page-container">
         <h1 className="landing-title text-center">Hey Don't Forget</h1>
 
-        <div 
-          className="landing-demo text-center"
-          onClick={this.demo}
-          >
+        <div className="landing-demo text-center" onClick={this.demo}>
           demo login
         </div>
 
@@ -59,52 +49,50 @@ onChange = event => {
             <div className="landing-label text-center">User Name</div>
             <input
               className="landing-input"
-              name='name'
+              name="name"
               value={this.state.name}
               onChange={this.onChange}
               placeholder="User Name"
-               />
+            />
           </div>
 
           <div className="landing-input-area">
             <div className="landing-label text-center">Password</div>
             <input
               className="landing-input"
-              name='myPassword'
+              name="myPassword"
               value={this.state.myPassword}
               onChange={this.onChange}
               placeholder="Password"
-               />
+            />
             <div className="password-err text-center">
               {this.props.password}
             </div>
           </div>
 
-          <button 
+          <button
             className="landing-login-btn btn btn-info"
             onClick={this.submit}
-            >Sign In</button>
+          >
+            Sign In
+          </button>
         </div>
       </div>
     );
   };
 }
 
-
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state coming into Landing.js");
-  // console.log(state);
   return {
-
-    userId: state.userId,
+    userId: state.userId
   };
 };
 
 const mapDispachToProps = dispach => {
   return {
     submitLogin: (name, password, history) => {
-      dispach({ type: "LOG_IN", payload: { name, password, history } } );
+      dispach({ type: "LOG_IN", payload: { name, password, history } });
     }
   };
 };
@@ -113,6 +101,3 @@ export default connect(
   mapStateToProps,
   mapDispachToProps
 )(LandingPage);
-
-
-

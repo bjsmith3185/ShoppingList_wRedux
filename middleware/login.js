@@ -5,8 +5,6 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.Users.findOne({ name: data.name })
         .then(nameReturn => {
-          console.log(nameReturn);
-
           let returnData = {
             userId: nameReturn._id
           };

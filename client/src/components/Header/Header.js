@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import * as ROUTES from "../../constants/routes";
 // Redux
 import { connect } from "react-redux";
 import Form from "../Form";
 import Menu from "../Menu";
-
 import "./Header.css";
 
 class Header extends Component {
@@ -15,7 +13,8 @@ class Header extends Component {
     stores: [],
     item: "",
     store: "",
-    qty: ""
+    qty: "",
+
   };
 
   componentDidMount() {
@@ -28,7 +27,6 @@ class Header extends Component {
 
   moreItems = event => {
     event.preventDefault();
-    // console.log("button was clicked");
     let data = {
       item: this.state.item,
       store: this.state.store,
@@ -72,9 +70,6 @@ class Header extends Component {
   };
 
   selectStore = store => {
-    // console.log(store);
-    // console.log("selecting store")
-    // console.log(this.props.userId)
     const myStore = {
       userId: this.props.userId,
       myStore: store
@@ -82,8 +77,7 @@ class Header extends Component {
     this.props.setStore(myStore);
     this.setState({
       showStores: false,
-      showDropDownMenu: false,
-      
+      showDropDownMenu: false
     });
   };
 
@@ -96,9 +90,7 @@ class Header extends Component {
     }
   };
 
-  openStores = (store) => {
-    console.log("clicked open stores");
-    console.log(store)
+  openStores = store => {
     if (store) {
       this.setState({
         showStores: false
@@ -108,35 +100,22 @@ class Header extends Component {
         showStores: true
       });
     }
+  };
 
-    // this.storeNames();
-    // if (this.state.showStores) {
-    //   this.setState({
-    //     showStores: false
-    //   });
-    // } else {
-    //   this.setState({
-    //     showStores: true
-    //   });
-    // }
+  editList = () => {
+    console.log("clicked edit store")
+    this.setState({
+      showDropDownMenu: false,
+     })
+     let data = true;
+     this.props.edit(data) 
   };
 
   signOutUser = () => {
-    console.log("Good Bye");
-    // const { history } = this.props;
-    // console.log(history)
-    // let userId = {
-    //   _id: this.props.userId
-    // }
-    console.log(this.props.history);
-
     this.props.signOut(this.props.userId, this.props.history);
-    // this.props.history.push('/')
   };
 
   render() {
-    console.log("in render");
-    console.log(this.props);
     return (
       <div className="header-area">
         <div className="top-area">
@@ -174,6 +153,7 @@ class Header extends Component {
             selectStore={this.selectStore}
             signOutUser={this.signOutUser}
             showDropDown={this.showDropdown}
+            editList={this.editList}
           />
         )}
 
@@ -193,8 +173,8 @@ class Header extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("state coming into Header.js");
-  // console.log(state);
+  // console.log("state coming into header")
+  // console.log(state)
   return {
     name: state.name,
     countRemaining: state.countRemaining,
@@ -203,12 +183,14 @@ const mapStateToProps = state => {
     storeNames: state.storeNames,
     myStore: state.myStore,
     userId: state.userId,
-    history: state.history
+    history: state.history,
+    editing: state.editing,
   };
 };
 
 // functions to dispatch actions
 const mapDispachToProps = dispach => {
+  
   return {
     addItem: (user, data) => {
       dispach({
@@ -225,12 +207,16 @@ const mapDispachToProps = dispach => {
     },
 
     signOut: (userId, history) => {
-      console.log(userId);
-      console.log(history);
       dispach({
         type: "SIGN_OUT",
         payload: { userId, history }
       });
+    },
+    edit: (editing) => {
+      dispach({
+        type: "EDIT",
+        payload: { editing }
+     })
     }
   };
 };

@@ -1,14 +1,9 @@
 import { takeLatest, put } from "redux-saga/effects";
-// import * as ROUTES from "../constants/routes";
 import API from "../utils/API";
-// import { withRouter, history } from 'react-router-dom';
-// import { withRouter } from 'react-router';
 
 //   Adds an item to the shopping collection
 function* addItemAsync(data) {
-  // console.log(data)
   const myData = yield API.addItem(data.val.user, data.val.data);
-  //    console.log(myData)
   yield put({ type: "SET_STORELIST_COUNT_STORE", val: myData.data });
 }
 
@@ -19,13 +14,9 @@ export function* watchAddItem() {
 //--------------------------------------------------------
 //    Load all data when Home page loads
 function* loadDataAsync(data) {
-  console.log("load data sga");
-  console.log(data);
   const myData = yield API.loadData(data.payload.id);
-//   console.log(myData);
-myData.data.signedIn = true;
+  myData.data.signedIn = true;
   myData.data.history = data.payload.history;
-  console.log(myData)
   yield put({ type: "SET_ALL_DATA", val: myData.data });
 }
 
@@ -35,7 +26,6 @@ export function* watchLoadData() {
 
 //--------------------------------------------------------
 //  strike thru list item
-
 function* strikeThruAsync(data) {
   const myData = yield API.strikeThru(data.val.id, {
     strikeThru: data.val.strikeThru
@@ -50,10 +40,7 @@ export function* watchStrikeThru() {
 //-------------------------------------------------------------------
 
 // delete item
-
 function* deleteItemAsync(data) {
-  // console.log("*****")
-  // console.log(data.val)
   const myData = yield API.deleteItem(data.val.item, data.val.user);
   yield put({ type: "SET_STORELIST_COUNT_STORE", val: myData.data });
 }
@@ -65,12 +52,9 @@ export function* watchDeleteItem() {
 //-------------------------------------------------------------------
 //  select store
 function* setStoreAsync(data) {
-  // console.log(data)
   const myData = yield API.selectStore(data.val.userId, {
     myStore: data.val.myStore
   });
-  console.log("&&&&&&&&&&&&&&&&&")
-  console.log(myData)
   yield put({ type: "SET_STORELIST_COUNT_STORE", val: myData.data });
 }
 
@@ -89,10 +73,7 @@ function* logInAsync(data) {
     let history = data.payload.history;
 
     const result = yield API.logIn(loginInfo);
-    console.log(result);
     if (result.data.userId) {
-
-       
       localStorage.setItem("userId", result.data.userId);
       yield put({ type: "SET_USERID", val: result.data.userId });
       history.push("/home");
@@ -113,19 +94,12 @@ export function* watchLogIn() {
 
 //   Log out user
 function* signOutAsync(data) {
-  // No need to go to the server for this one now
-  // maybe with a later version
-    console.log(data)
   let history = data.payload.history;
-
-  //   console.log("sign out saga async")
-  //   console.log(data)
   if (data.payload.userId) {
     localStorage.removeItem("userId");
     history.push("/");
   }
-
-  //   yield put({ type: "SIGN_OUT_ASYNC", val: data });
+  yield put({ type: "SIGN_OUT_ASYNC", val: data });
 }
 
 export function* watchSignOut() {
@@ -136,10 +110,6 @@ export function* watchSignOut() {
 
 //  set history
 function* setHistoryAsync(data) {
-  // console.log(data)
-  // const myData = yield API.selectStore(data.val.userId, {
-  //   myStore: data.val.myStore
-  // });
   yield put({ type: "SET_HISTORY_ASYNC", val: data.payload.history });
 }
 
@@ -148,16 +118,50 @@ export function* watchSetHistory() {
 }
 //---------------------------------------
 
-// //   Log in user backup
-// function* logInAsync(data) {
-//     // console.log(data)
-//     const myData = yield API.logIn(data.val)
-// //     console.log('back in the saga')
-// //    console.log(myData)
+// updating store with value to show update window
+function* editAsync(data) {
+  // console.log("editAsync")
+  // console.log(data)
+  // // dont need to go to the server here
+  // just update the store with a value 
+  // to show edit fields
 
-//     yield put({type: 'SET_ALL_DATA', val: myData.data});
-// }
+ yield put({ type: "EDIT_ASYNC", val: data.payload } );
+}
 
-// export function* watchLogIn() {
-//     yield takeLatest('LOG_IN', logInAsync)
-// }
+export function* watchEdit() {
+  yield takeLatest("EDIT", editAsync);
+}
+//---------------------------------------
+
+//  update/edit list
+function* updateListAsync(data) {
+  // console.log("updateListtAsync")
+  // console.log(data)
+  const updated = yield API.updateShoppingList(data.val.id, data.val.payload)
+// console.log("updateListtAsync")
+//   console.log(updated);
+ yield put({ type: "SET_STORELIST_COUNT_STORE", val: updated.data } );
+}
+
+export function* watchUpdateList() {
+  yield takeLatest("UPDATE_LIST", updateListAsync);
+}
+//---------------------------------------
+
+// canceling the edit window
+function* cancelUpdateAsync(data) {
+  // console.log("editAsync")
+  // console.log(data)
+  // // dont need to go to the server here
+  // just update the store with a value 
+  // to show edit fields
+
+ yield put({ type: "EDIT_ASYNC", val: data.payload } );
+}
+
+export function* watchCancelUpdate() {
+  yield takeLatest("CANCEL_UPDATE", cancelUpdateAsync);
+}
+//---------------------------------------
+

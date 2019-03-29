@@ -9,7 +9,6 @@ module.exports = {
     // console.log(id);
     return new Promise((resolve, reject) => {
       // takes in user._id but we dong have one yet
-
       users
         .findById(id)
         .then(userResult => {

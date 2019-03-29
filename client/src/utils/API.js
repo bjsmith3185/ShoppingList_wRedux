@@ -14,7 +14,6 @@ export default {
   //============ system
 
   loadData: function(user_id) {
-    // console.log(user_id)
     return axios.get("/api/system/load/" + user_id);
   },
 
@@ -31,29 +30,22 @@ export default {
   },
 
   addItem: function(user, data) {
-    // console.log(data)
     return axios.post("/api/system/addItem/" + user, data);
   },
 
   logIn: function(data) {
-    // console.log(data)
     return axios.put("/api/system/login", data);
   },
 
-  // getAllData: function () {
-  //   return axios.get('./api/system/all')
-  // },
-
-  // checkOff: function (id, data) {
-  //   console.log("api")
-  //   return axios.put('./api/system/checkoff/' + id, data)
-  // },
+  updateShoppingList: function(id, data) {
+    return axios.put("./api/system/updatelist/"+ id, data);
+  },
 
   // =============== shopping
 
-  updateShoppingList: function(data) {
-    return axios.post("./api/shopping", data);
-  },
+  // updateShoppingList: function(data) {
+  //   return axios.post("./api/shopping", data);
+  // },
 
   getListItems: function() {
     return axios.get("./api/shopping");

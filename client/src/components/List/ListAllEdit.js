@@ -1,0 +1,182 @@
+import React, { Component } from "react";
+import "./List.css";
+
+// Redux
+import { connect } from "react-redux";
+
+class List extends Component {
+
+  state = {
+    item: '',
+    qty: '',
+  }
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  delete = item_id => {
+    let deleteData = {
+      item: item_id,
+      user: localStorage.getItem("userId")
+    };
+    this.props.removeItem(deleteData);
+  };
+
+  strike = (id, strikeThru) => {
+    if (strikeThru) {
+      strikeThru = false;
+    } else {
+      strikeThru = true;
+    }
+    this.props.checkOff(id, strikeThru);
+  };
+
+  render() {
+    return (
+      <div className="list">
+        <div className="list-store-area">
+          <div className="list-store-title text-center">
+            {this.props.myStore
+              .toLowerCase()
+              .split(" ")
+              .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+              .join(" ")}
+          </div>
+
+              {/* Show input boxes for list items when in edit mode */}
+
+          {this.props.editing ? (
+            <div>
+              <div>
+                <div className="update-edit-area text-left">
+                  <div className="save-edit-btn">Save</div>
+                  <div className="cancel-edit-btn">Cancel</div>
+                </div>
+
+                <div className="list-qty-remaining text-right">
+                  Items Remaining {this.props.countRemaining}
+                </div>
+              </div>
+
+              {this.props.storeList && (
+                <div className="item-list-container">
+                  {this.props.storeList.map((item, i) => (
+                    <div className="item" key={i}>
+                   
+                        <div className="item-container text-left">
+                          <input 
+                            className="list-edit-item"
+                            value={this.state.item}
+                            name="item"
+                            onChange={this.onChange}
+                            placeholder={item.item}
+                          />
+
+                          <input
+                            className="list-edit-qty"
+                            value={this.state.qty}
+                            name='qty'
+                            onChange={this.onChange}
+                            placeholder={item.qty}
+                            />
+                          {/* <span className="item-name">{item.item}</span> */}
+                          {/* <span className="item-qty">
+                            &#40; {item.qty} &#41;
+                          </span> */}
+                        </div>
+                     
+
+                      <div className="item-btn-container text-right">
+                        <div
+                          className="item-delete-btn"
+                          onClick={() => this.delete(item._id)}
+                        >
+                          X
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+            </div>
+          ) : (
+            <div>
+              <div className="list-qty-remaining-solo text-right">
+                Items Remaining {this.props.countRemaining}
+              </div>
+              {this.props.storeList && (
+                <div className="item-list-container">
+                  {this.props.storeList.map((item, i) => (
+                    <div className="item" key={i}>
+                      {item.strikeThru ? (
+                        <div
+                          className="item-container text-left strike"
+                          onClick={() => this.strike(item._id, item.strikeThru)}
+                        >
+                          <span className="item-name">{item.item}</span>
+                          <span className="item-qty">{item.qty}</span>
+                        </div>
+                      ) : (
+                        <div
+                          className="item-container text-left"
+                          onClick={() => this.strike(item._id, item.strikeThru)}
+                        >
+                          <span className="item-name">{item.item}</span>
+                          <span className="item-qty">
+                            &#40; {item.qty} &#41;
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="item-btn-container text-right">
+                        <div
+                          className="item-delete-btn"
+                          onClick={() => this.delete(item._id)}
+                        >
+                          X
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+}
+
+// this brings in the state to display on this component
+const mapStateToProps = state => {
+  console.log("state coming into List");
+  console.log(state);
+  return {
+    name: state.name,
+    countRemaining: state.countRemaining,
+    allList: state.allList,
+    storeList: state.storeList,
+    storeNames: state.storeNames,
+    myStore: state.myStore,
+    editing: state.editing
+  };
+};
+
+const mapDispachToProps = dispach => {
+  return {
+    checkOff: (id, strikeThru) => {
+      dispach({ type: "STRIKE_THRU", val: { id: id, strikeThru: strikeThru } });
+    },
+
+    removeItem: data => {
+      dispach({ type: "DELETE_ITEM", val: data });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispachToProps
+)(List);

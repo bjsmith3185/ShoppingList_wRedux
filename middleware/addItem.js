@@ -8,7 +8,6 @@ const storeNames = require("./storeNames");
 module.exports = {
   newItem: function(userId, data) {
     return new Promise((resolve, reject) => {
-    //   console.log(data);
       // update the shopping collection with new item
       shopping
         .create(data)
@@ -21,7 +20,6 @@ module.exports = {
           users
             .update(userId, newStore)
             .then(userResult => {
-            //   console.log(userResult);
               // create the list of all items
               shopping
                 .findAll()
@@ -34,7 +32,6 @@ module.exports = {
                       list
                         .storeList(data.store)
                         .then(specificList => {
-
                           let returnData = {
                             myStore: data.store,
                             allList: shoppingAll,
@@ -42,10 +39,7 @@ module.exports = {
                             countRemaining: specificList.countRemaining,
                             storeNames: storeNames
                           };
-                        //   console.log(returnData)
-
                           resolve(returnData);
-
                         })
                         .catch(err => console.log(err));
                     })
@@ -54,46 +48,6 @@ module.exports = {
                 .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
-
-          //   shopping
-          //     .findAll()
-          //     .then(allResult => {
-          //       // make store array here
-          //       storeNames
-          //         .nameList(allResult)
-          //         .then(storeNames => {
-
-          //           // get shopping list for the store above
-          //         //   shopping
-          //         //     .findByStore(data.store)
-          //         //     .then(storeResult => {
-          //         //       count
-          //         //         .count(storeResult)
-          //         //         .then(countResult => {
-          //         //           let returnData = {
-          //         //             myStore: data.store,
-          //         //             allList: allResult,
-          //         //             storeList: storeResult,
-          //         //             countRemaining: countResult,
-          //         //             storeNames: storeNames
-          //         //           };
-          //         //           resolve(returnData);
-          //         //         })
-          //         //         .catch(err => console.log(err));
-          //         //     })
-          //         //     .catch(err => console.log(err));
-          //         })
-          //         .catch(err => console.log(err));
-          //     })
-          //     .catch(err => console.log(err));
-
-          // list.storeList(dbresult.store)
-          // .then(listResult => {
-          //     // console.log("what is in ner")
-          //     // console.log(listResult)
-          //     resolve(listResult)
-          // })
-          // .catch((err) => console.log(err))
         })
         .catch(err => console.log(err));
     });
