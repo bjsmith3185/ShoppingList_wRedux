@@ -40,8 +40,9 @@ export function* watchEditArea() {
 
 // sets myStore from dropdown menu
 function* setStoreAsync(data) {
-  const myData = yield API.selectStore(data.val.userId, {
-    myStore: data.val.myStore
+  console.log(data)
+  const myData = yield API.selectStore(data.payload.userId, {
+    myStore: data.payload.myStore
   });
   yield put({ type: "SET_STORELIST_COUNT_STORE", val: myData.data });
 }

@@ -36,7 +36,8 @@ class Menu extends Component {
       myStore: store,
       showDropdownMenu: false,
     };
-    this.props.setStore(myStore);
+    // this.props.setStore(myStore);
+    this.props.setStore(store, this.props.userId, false);
     this.setState({
       showStoresList: false,
     });
@@ -150,11 +151,11 @@ const mapStateToProps = state => {
 // functions to dispatch actions
 const mapDispachToProps = dispach => {
   return {
-
-    setStore: (data) => {
+ 
+    setStore: (myStore, userId, showDropdownMenu) => {
       dispach({
         type: "SET_STORE",
-        payload: { data }
+        payload: { myStore, userId, showDropdownMenu }
       });
     },
 

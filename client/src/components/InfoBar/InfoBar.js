@@ -45,7 +45,7 @@ class InfoBar extends Component {
             .join(" ")}
         </div>
 
-        {!this.props.editing ? (
+        {this.props.editing ? (
           <div>
             <div className="update-edit-area text-left">
               <div className="info-cancel-edit-btn" onClick={this.cancelEdit}>

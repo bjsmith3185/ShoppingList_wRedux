@@ -120,6 +120,8 @@ const setData = (state = initialState, action) => {
       storeList: action.val.storeList,
       storeNames: action.val.storeNames,
       showAddItemMenu: action.val.showAddItemMenu,
+      showStoresList: action.val.showStoresList,
+
     };
   }
 

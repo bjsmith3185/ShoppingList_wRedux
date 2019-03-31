@@ -143,6 +143,34 @@ class List extends Component {
 
         {this.props.editing ? (
           <div>
+            {/* beginning of actual list items with edit button  */}
+            {this.props.storeList && (
+              <div className="item-list-container">
+                {this.props.storeList.map((item, i) => (
+                  <div className="item" key={i}>
+                    <div
+                      className="item-container text-left"
+                      onClick={() => this.strike(item._id, item.strikeThru)}
+                    >
+                      <span className="item-name">{item.item}</span>
+                      <span className="item-qty">&#40; {item.qty} &#41;</span>
+                    </div>
+
+                    <div className="item-btn-container text-right">
+                      <div
+                        className="item-edit-btn text-cener"
+                        onClick={() => this.edit(item._id)}
+                      >
+                        Edit
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div>
             {/* beginning of actual list items with delete button  */}
             {this.props.storeList && (
               <div className="item-list-container">
@@ -172,34 +200,6 @@ class List extends Component {
                         onClick={() => this.delete(item._id)}
                       >
                         X
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ) : (
-          <div>
-            {/* beginning of actual list items with edit button  */}
-            {this.props.storeList && (
-              <div className="item-list-container">
-                {this.props.storeList.map((item, i) => (
-                  <div className="item" key={i}>
-                    <div
-                      className="item-container text-left"
-                      onClick={() => this.strike(item._id, item.strikeThru)}
-                    >
-                      <span className="item-name">{item.item}</span>
-                      <span className="item-qty">&#40; {item.qty} &#41;</span>
-                    </div>
-
-                    <div className="item-btn-container text-right">
-                      <div
-                        className="item-edit-btn text-cener"
-                        onClick={() => this.edit(item._id)}
-                      >
-                        Edit
                       </div>
                     </div>
                   </div>
