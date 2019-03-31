@@ -5,7 +5,7 @@ const setData = (state = initialState, action) => {
 
   // open/close dropdown menu
   if (action.type === "SET_DROPDOWN_MENU") {
-    console.log(action);
+    // console.log(action);
     return {
       ...state,
       showDropdownMenu: action.val
@@ -108,8 +108,8 @@ const setData = (state = initialState, action) => {
 
   // reducer for setting storelist, count, store
   if (action.type === "SET_STORELIST_COUNT_STORE") {
-    console.log("reducer, all data");
-    console.log(action.val);
+    // console.log("reducer, all data");
+    // console.log(action.val);
 
     return {
       ...state,
@@ -157,7 +157,7 @@ const setData = (state = initialState, action) => {
 
   // reducer for signing out user
   if (action.type === "SIGN_OUT_ASYNC") {
-    console.log("reducer, set signout");
+    // console.log("reducer, set signout");
 
     return {
       ...state,
