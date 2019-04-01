@@ -55,30 +55,13 @@ class List extends Component {
           this.props.storeList[i].item,
           this.props.storeList[i].qty,
           this.props.storeList[i].store,
-          id,
+          this.props.storeList[i]._id,
           edit,
           add,
           dropDown
         );
       }
     }
-  };
-
-  editA = id => {
-    for (var i = 0; i < this.props.storeList.length; i++) {
-      if (this.props.storeList[i]._id === id) {
-        this.setState({
-          selectedItem: this.props.storeList[i].item,
-          selectedQty: this.props.storeList[i].qty,
-          selectedStore: this.props.storeList[i].store,
-          selected_id: id
-        });
-      }
-    }
-
-    this.setState({
-      showEditWindow: true
-    });
   };
 
   submitChanges = () => {
@@ -121,26 +104,13 @@ class List extends Component {
     });
   };
 
-  // cancelEdit = () => {
-  //   this.setState({
-  //     showEditWindow: false
-  //   });
-  //   let data = false;
-  //   this.props.cancelUpdate(data);
-  // };
-
   render() {
-    // console.log("list render")
-    // console.log(this.props);
-
     const listArea =
       this.props.showEditMenu ||
       this.props.showDropdownMenu ||
       this.props.showAddItemMenu
         ? "list-area-open"
         : "list-area";
-
-    // const listArea = this.props.editing ? "list-area-open" : "list-area";
 
     return (
       <div className={listArea}>
@@ -220,8 +190,6 @@ class List extends Component {
 
 // this brings in the state to display on this component
 const mapStateToProps = state => {
-  // console.log("list state");
-  // console.log(state);
   return {
     name: state.name,
     countRemaining: state.countRemaining,
