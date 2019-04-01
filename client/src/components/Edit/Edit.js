@@ -14,14 +14,20 @@ class Edit extends Component {
     selectedItem: "",
     selectedQty: "",
     selectedStore: "",
-    selected_id: ""
+    selected_id: "",
+
+    itemError = '',
+    qtyError = '',
+    storeError = '',
   };
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  submitChanges = () => {
+  submitChanges = (event) => {
+    event.preventDefault();
+
     let item, qty, store;
 
     if (this.state.item === "") {
@@ -61,6 +67,7 @@ class Edit extends Component {
     });
   };
 
+  
   cancelEdit = () => {
     this.setState({
       showEditWindow: false
