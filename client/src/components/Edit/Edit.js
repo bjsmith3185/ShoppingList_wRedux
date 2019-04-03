@@ -16,9 +16,9 @@ class Edit extends Component {
     selectedStore: "",
     selected_id: "",
 
-    itemError = '',
-    qtyError = '',
-    storeError = '',
+    itemError: '',
+    qtyError: '',
+    storeError: '',
   };
 
   onChange = event => {

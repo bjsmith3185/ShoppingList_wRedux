@@ -6,11 +6,15 @@ const app = express();
 require('dotenv').config()
 const PORT = process.env.PORT || 3001;
 
-console.log(process.env.REDIS_URL)
 
 // Define middleware here
-app.use(bodyParser.json({limit:'50mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit:'50mb', extended: true, parameterLimit: 1000000 }));
+
+// app.use(bodyParser.json({limit:'50mb', extended: true }));
+// app.use(bodyParser.urlencoded({ limit:'50mb', extended: true, parameterLimit: 1000000 }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
